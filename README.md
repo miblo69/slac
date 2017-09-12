@@ -2,6 +2,7 @@
 Simple Log Analysis Center
 
 Mike Blomgren
+mike [dot] blomgren <at> tornado {dot} se
 
 This is a perl project I started back in 2001, to analyze various types of logs for security issues. Analysis started with Web Logs, and has expanded into firewall logs etc
 
