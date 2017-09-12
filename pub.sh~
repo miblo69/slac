@@ -1,0 +1,7 @@
+cp mail_parse.pl /usr/local/slac/
+cp secsrch.pl /usr/local/slac/
+sudo cp upload.cgi /var/wwwtornado/cgi-bin/upload.cgi
+sudo cp upload2.cgi /var/wwwtornado/cgi-bin/
+sudo cp progressbar.cgi /var/wwwtornado/cgi-bin/
+sudo chown nobody.nobody /var/wwwtornado/cgi-bin/upload.cgi
+

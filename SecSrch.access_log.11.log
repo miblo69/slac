@@ -1,0 +1,393 @@
+Security Log File Analysis
+SLAC v 2.35
+
+Inputfile(s): /home/mibl/www.gildea.com/access_log.11
+Log Start: 2002-06-01 04:00:49
+Log Stopp: 2002-06-02 03:56:13
+nr of analyzed rows:     684 
+nr of unique IP-addresses:     145 
+Rows identified as:
+ Domino Extended                  1
+ Common Log Format              683
+Name Resolution has NOT been performed.
+
+Servers analyzed (2):                Rows
+                                         9
+  kalle                                675
+
+********** Hits / hour ********** 
+   Hour       Hits
+      0         54  *************************************             
+      1         20  *************                                     
+      2         30  ********************                              
+      3         42  ****************************                      
+      4         20  *************                                     
+      5         40  ***************************                       
+      6         18  ************                                      
+      7         30  ********************                              
+      8         25  *****************                                 
+      9          1                                                    
+     10         12  ********                                          
+     11         34  ***********************                           
+     12         23  ***************                                   
+     13         41  ****************************                      
+     14         12  ********                                          
+     15         37  *************************                         
+     16         30  ********************                              
+     17         57  ***************************************           
+     18         23  ***************                                   
+     19         10  ******                                            
+     20         22  ***************                                   
+     21         24  ****************                                  
+     22         46  *******************************                   
+     23         33  **********************                            
+
+********** Successful attempts to retrieve 'Dangerous' files ********** 
+This could inidicate a serious security breach.
+Totally 2 and 2 unique.
+  Count  Src IP           URL                                               
+      1  192.220.98.177   /cmd.exe                                          
+      1  212.113.19.150   /robots.txt/cmd.exe                               
+
+********** Users who have accessed protected pages ********** 
+Totally 1 and 1 unique.
+  Count  Status  Src IP           User      URL
+      1    401   212.113.19.150   kula      /sd/manual/sd_doc_19.html
+
+********** Logged in Users **********
+Totally 684 and 2 unique.
+    Count  User           
+      683  -              
+        1  kula           
+
+********** Logged in users per IP-address (excl Anonymous) **********
+Totally 1 and 1 unique.
+    Count  User             Src-IP           FQDN
+        1  kula             212.113.19.150   
+
+********** Count of HTTP statuscodes ********** 
+Totally 684 and 9 unique.
+    Count     ( % )     HTTP-Status 
+      252 ( 36.84%)     200 OK
+       89 ( 13.01%)     206 PARTIAL_CONTENT
+        6 (  0.88%)     301 MOVED
+       40 (  5.85%)     304 NOT_MODIFIED
+       34 (  4.97%)     400 BAD_REQUEST
+        1 (  0.15%)     401 DENIED
+       18 (  2.63%)     403 FORBIDDEN
+      242 ( 35.38%)     404 NOT_FOUND
+        2 (  0.29%)     500 SERVER_ERROR
+
+********** Count of HTTP Methods ********** 
+Totally 684 and 2 unique.
+    Count     ( % )     HTTP-Method 
+      681 ( 99.56%)     GET
+        3 (  0.44%)     HEAD
+
+********** Count of HTTP Versions ********** 
+Totally 684 and 5 unique.
+    Count     ( % )    HTTP-Version 
+      525 ( 76.75%)    HTTP/1.0
+      156 ( 22.81%)    HTTP/1.1
+        1 (  0.15%)    HTTP/2.0
+        1 (  0.15%)    HTTP/1.3
+        1 (  0.15%)    HT/1.0
+
+********** List illegal HTTP Versions ********** 
+This could inidicate attempts to manipulate and compromise the webserver.
+Totally 3 and 3 unique.
+    Count HTTP String               IP              FQDN 
+        1 HTTP/1.3                  212.113.19.150    
+        1 HT/1.0                    66.196.73.20      
+        1 HTTP/2.0                  216.239.46.58     
+
+
+********** Top 20 HIT'ers **********
+Totally 684 and 145 unique.
+Rank        %     Count  IP               FQDN                          
+   1 ( 11.99%)       82  192.220.98.177                                 
+   2 (  4.82%)       33  64.40.42.71                                    
+   3 (  3.80%)       26  65.214.36.157                                  
+   4 (  2.34%)       16  208.1.118.40                                   
+   5 (  2.34%)       16  62.225.61.22                                   
+   6 (  2.34%)       16  64.113.193.222                                 
+   7 (  2.34%)       16  212.117.193.226                                
+   8 (  2.34%)       16  61.56.198.253                                  
+   9 (  2.34%)       16  64.217.72.58                                   
+  10 (  2.34%)       16  61.136.226.2                                   
+  11 (  2.34%)       16  195.215.249.103                                
+  12 (  2.34%)       16  213.120.148.126                                
+  13 (  2.34%)       16  211.101.145.142                                
+  14 (  2.34%)       16  218.244.66.53                                  
+  15 (  2.34%)       16  203.57.44.250                                  
+  16 (  2.34%)       16  209.208.193.50                                 
+  17 (  2.34%)       16  207.248.29.17                                  
+  18 (  2.34%)       16  12.246.2.12                                    
+  19 (  2.34%)       16  61.144.132.130                                 
+  20 (  2.34%)       16  63.104.162.7                                   
+
+
+********** Access attempts generating 403/404 messages **********
+Totally 260 and 22 unique.
+  Count   Status  URL            
+     18      404  /scripts/..%c1%1c../winnt/system32/cmd.exe?/c+dir
+     18      404  /c/winnt/system32/cmd.exe?/c+dir
+     18      404  /msadc/..%255c../..%255c../..%255c/..%c1%1c../..%c1%1c../..%c1%1c../winnt/system32/cmd.exe?/c+dir
+     18      404  /scripts/..%c0%af../winnt/system32/cmd.exe?/c+dir
+     18      404  /scripts/..%c0%2f../winnt/system32/cmd.exe?/c+dir
+     18      404  /MSADC/root.exe?/c+dir
+     18      404  /scripts/..%c1%9c../winnt/system32/cmd.exe?/c+dir
+     18      404  /_mem_bin/..%255c../..%255c../..%255c../winnt/system32/cmd.exe?/c+dir
+     18      403  /_vti_bin/..%255c../..%255c../..%255c../winnt/system32/cmd.exe?/c+dir
+     18      404  /d/winnt/system32/cmd.exe?/c+dir
+     18      404  /scripts/..%255c../winnt/system32/cmd.exe?/c+dir
+     17      404  /scripts/..%25%35%63../winnt/system32/cmd.exe?/c+dir
+     17      404  /scripts/root.exe?/c+dir
+     16      404  /scripts/..%252f../winnt/system32/cmd.exe?/c+dir
+      3      404  /ftp/sd/install.exe
+      2      404  /scripts/      
+      2      404  /ftp/sd/textdoc.exe
+      1      404  /favicon.ico   
+      1      404  /sd/download/sd_doc.TXT
+      1      404  /sd/download/sd_doc.PS
+      1      404  /eudora.html/  
+      1      404  /sd/download/sessions.txt
+
+
+********** Top 20 IP's generating 403/404 **********
+Totally 260 and 24 unique.
+The top IP's on this list could be the source for vulnerability scans of your  site.
+Rank   Count   IP-Address       FQDN
+   1      14   209.208.193.50   
+   2      14   218.244.66.53    
+   3      14   211.101.145.142  
+   4      14   207.248.29.17    
+   5      14   212.117.193.226  
+   6      14   208.1.118.40     
+   7      14   61.56.198.253    
+   8      14   12.246.2.12      
+   9      14   62.225.61.22     
+  10      14   195.215.249.103  
+  11      14   61.144.132.130   
+  12      14   63.104.162.7     
+  13      14   64.113.193.222   
+  14      14   203.57.44.250    
+  15      14   61.136.226.2     
+  16      14   213.120.148.126  
+  17      14   64.217.72.58     
+  18      12   200.207.118.123  
+  19       5   216.88.65.96     
+  20       1   212.113.39.227   
+
+
+********** Top 20 Files per IP genererating 403/404 **********
+Totally 260 and 257 unique.
+This could inidicate either faultly links on your site, or
+a perpetrator looking for vulnerabilities.
+Rank   Count  Src IP           URL
+   1       3  216.88.65.96     /ftp/sd/install.exe
+   2       2  216.88.65.96     /ftp/sd/textdoc.exe
+   3       1  61.56.198.253    /scripts/..%25%35%63../winnt/system32/cmd.exe?/c+dir
+   4       1  207.248.29.17    /scripts/..%255c../winnt/system32/cmd.exe?/c+dir
+   5       1  212.117.193.226  /MSADC/root.exe?/c+dir
+   6       1  63.104.162.7     /scripts/..%c0%2f../winnt/system32/cmd.exe?/c+dir
+   7       1  211.101.145.142  /scripts/..%255c../winnt/system32/cmd.exe?/c+dir
+   8       1  200.207.118.123  /_vti_bin/..%255c../..%255c../..%255c../winnt/system32/cmd.exe?/c+dir
+   9       1  64.113.193.222   /MSADC/root.exe?/c+dir
+  10       1  207.248.29.17    /MSADC/root.exe?/c+dir
+  11       1  62.225.61.22     /scripts/..%c1%1c../winnt/system32/cmd.exe?/c+dir
+  12       1  208.1.118.40     /_vti_bin/..%255c../..%255c../..%255c../winnt/system32/cmd.exe?/c+dir
+  13       1  200.207.118.123  /scripts/..%c0%2f../winnt/system32/cmd.exe?/c+dir
+  14       1  207.248.29.17    /d/winnt/system32/cmd.exe?/c+dir
+  15       1  203.57.44.250    /scripts/..%c0%2f../winnt/system32/cmd.exe?/c+dir
+  16       1  12.246.2.12      /scripts/..%c0%af../winnt/system32/cmd.exe?/c+dir
+  17       1  64.217.72.58     /scripts/..%c1%9c../winnt/system32/cmd.exe?/c+dir
+  18       1  64.113.193.222   /scripts/..%255c../winnt/system32/cmd.exe?/c+dir
+  19       1  208.1.118.40     /scripts/root.exe?/c+dir
+  20       1  209.208.193.50   /scripts/..%c1%9c../winnt/system32/cmd.exe?/c+dir
+
+********** Top 20 IP's causing Server Errors (5xx) ********** 
+Totally 2 and 2 unique.
+This could indicate various attempts to cause your web server
+to produce erronous results.
+  Count  Status   Src IP          FQDN
+      1  500      216.239.46.186  
+      1  500      192.220.98.177  
+
+********** Top 20 URL's causing Server Errors (5xx) ********** 
+Totally 2 and 2 unique.
+  Count  Status   URL                 
+      1  500      /                   
+      1  500      /eudora/            
+
+********** Top 20 URL's & IP's causing Server Errors (5xx) ********** 
+Totally 2 and 2 unique.
+  Count  Status   Src IP           URL
+      1  500      216.239.46.186   /eudora/
+      1  500      192.220.98.177   /
+
+********** URL's containing binary data ********** 
+None. 
+
+********** Top 20 Referers ********** 
+Totally 684 and 78 unique.
+  Count  Referer                                           
+    528  -                                                  
+     15  http://www.gildea.com/pgp/pgpdoc1/pgpdoc1.html     
+      9  http://www.gildea.com/stephen/wang-center/schedules/wang.html 
+      8  http://www.gildea.com/pgp/                         
+      7  http://www.gildea.com/sd/download-pc.html          
+      5  http://www.gildea.com/pgp/pgpdoc1/pgpdoc1_4.html   
+      5  http://www.gildea.com/ftp/cgi-bin/                 
+      4  http://www.gildea.com/wang-center/schedules/wang.html 
+      4  http://www.gildea.com/pgp/pgformat/pgformat.html   
+      4  http://www.gildea.com/                             
+      3  http://www.gildea.com/eudora/                      
+      3  http://www.gildea.com/pgp/pgpdoc1/pgpdoc1_8.html   
+      3  http://www.gildea.com/pgp/pgpdoc1/pgpdoc1_5.html   
+      3  http://www.mit.edu/activities/tech-squares/        
+      3  http://www.gildea.com/pgp/pgpdoc1/pgpdoc1_3.html   
+      3  http://dir.yahoo.com/Computers_and_Internet/Security_and_Encryption/PGP___Pretty_Good_Privacy/ 
+      3  http://www.gildea.com/pgp/pgpdoc2/vulnerabilities.html 
+      2  http://webferret.search.com/click?wf,gildea,,www.gildea.com%2Feudora,,aol 
+      2  http://www.gildea.com/stephen/wang-center/         
+      2  http://www.gildea.com/pgp/pgpdoc2/pgpdoc2.html     
+
+********** Browsers ********** 
+Totally 684 and 62 unique.
+  Count  Browser                                           
+    292  -                                                  
+     92  Monitor::httpd/1.1                                 
+     44  Googlebot/2.1 (+http://www.googlebot.com/bot.html) 
+     33  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Q312461) 
+     26  Mozilla/2.0 (compatible; Ask Jeeves)               
+     26  Mozilla/4.0 (compatible; MSIE 6.0; Windows 98)     
+     17  Mozilla/5.0 (Slurp/cat; slurp@inktomi.com; http://www.inktomi.com/slurp.html) 
+     14  Mozilla/4.0 (compatible; MSIE 5.5; Windows 98; T312461) 
+     14  ia_archiver                                        
+     14  Mozilla/4.0 (compatible; MSIE 4.01; Windows NT)    
+      9  Opera/6.03 (Windows 2000; U)  [en]                 
+      7  Mozilla/4.0 (compatible; MSIE 5.0; Windows 98; DigExt) 
+      7  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1) 
+      6  Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; T312461) 
+      6  Mozilla/4.0 (compatible; MSIE 5.5; AOL 6.0; Windows 98) 
+      5  Mozilla/5.0 (compatible; Konqueror/2.1.1; X11)     
+      5  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; (R1 1.1)) 
+      4  Mozilla/4.0 (compatible; MSIE 5.5; Windows 98)     
+      3  Mozilla/4.0 (compatible; MSIE 5.14; Mac_PowerPC)   
+      3  Mozilla/3.0 (Slurp/si; slurp@inktomi.com; http://www.inktomi.com/slurp.html) 
+      3  Mozilla/4.0 (compatible; MSIE 5.5; Windows 98; Win 9x 4.90) 
+      3  Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Hotbar 3.0) 
+      3  FAST-WebCrawler/3.2 test                           
+      2  Mozilla/4.0 (compatible; MSIE 5.5; AOL 7.0; Windows 98; Win 9x 4.90) 
+      2  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Q312461; KKman2.0) 
+      2  Mozilla/3.0 WebTV/1.2 (compatible; MSIE 2.0)       
+      2  Mozilla/4.0 (compatible; MSIE 5.5; Windows 98; H010818) 
+      2  Mozilla/4.0 (compatible; MSIE 5.5; AOL 7.0; Windows 95) 
+      2  Mozilla/4.0 (compatible; MSIE 6.0; AOL 6.0; Windows NT 5.1; Q312461) 
+      2  bumblebee@relevare.com                             
+      2  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; Q312461; .NET CLR 1.0.3705) 
+      2  Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461) 
+      1  Mozilla/4.76 (Macintosh; U; PPC)                   
+      1  Microsoft URL Control - 6.00.8862                  
+      1  Mozilla/4.0 (compatible; MSIE 6.0; AOL 7.0; Windows NT 5.1; Q312461) 
+      1  Mozilla/4.0 (compatible; MSIE 5.0; Windows 98; DigExt; NetCaptor 6.5.0) 
+      1  Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; H010818) 
+      1  Mozilla/4.0 (compatible; MSIE 5.5; AOL 6.0; Windows 95) 
+      1  Mozilla/4.5 [en] (Win98; I)                        
+      1  Mozilla/4.7 ( Liberate; DTV; 4_0; WIN32; GenericProvider ) 
+      1  Mozilla/4.0 (compatible; MSIE 4.0; Windows 95)     
+      1  Mozilla/4.0 (compatible; MSIE 5.5; AOL 6.0; Windows 98; Win 9x 4.90) 
+      1  Mozilla/4.0 (compatible; MSIE 5.0; Mac_PowerPC)    
+      1  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705; MSIECrawler) 
+      1  Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; ZFREECD11z) 
+      1  Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Win 9x 4.90) 
+      1  Mozilla/4.08 (Macintosh; U; PPC, Nav)              
+      1  ASPSeek/1.2.7                                      
+      1  Mozilla/4.0 (compatible; MSIE 5.01; Windows NT; O2OIE5-5000; O2OIE5-5630) 
+      1  Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)  via proxy gateway  CERN-HTTPD/3.0 libwww/2.17 
+      1  Mozilla/4.0 (compatible; MSIE 5.01; Windows 98; OptusIE501-018) 
+      1  Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0) 
+      1  WebCopier v3.0.1                                   
+      1  Mozilla/4.0 (compatible; MSIE 5.5; Windows 95)     
+      1  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0) 
+      1  Mozilla/4.74 [en] (Win98; U)                       
+      1  Mozilla/4.76 [en] (WinNT; U)                       
+      1  Mozilla/4.0 (compatible; Powermarks/3.5; Windows 95/98/2000/NT) 
+      1  Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0; AIRF; BROADPAGE) 
+      1  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; Q312461) 
+      1  Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0) Fetch API Request 
+      1  Mozilla/4.0 compatible ZyBorg/1.0 (ZyBorg@WISEnutbot.com; http://www.WISEnutbot.com) 
+
+********** Same Cookie from different IP-addresses ********** 
+Not Available - not logged in log file.
+
+********** Unsuccessful Subdirectory Listing Attempts ********** 
+Totally 93 and 14 unique.
+  Count  Status URL                                      IP              FQDN
+     76     206 /                                        192.220.98.177  
+      3     206 /                                        12.81.28.144    
+      2     206 /                                        64.215.126.36   
+      2     206 /                                        216.200.51.44   
+      1     206 /test2/                                  192.220.98.177  
+      1     206 /test/                                   192.220.98.177  
+      1     206 /                                        68.36.81.241    
+      1     500 /                                        192.220.98.177  
+      1     206 /                                        166.42.40.163   
+      1     404 /scripts/                                64.217.72.58    
+      1     500 /eudora/                                 216.239.46.186  
+      1     206 /                                        80.26.13.125    
+      1     404 /eudora.html/                            159.231.71.2    
+      1     404 /scripts/                                61.144.132.130  
+
+********** Unsuccessful Subdir attempts per IP ********
+Count: 79         IP: 192.220.98.177 
+  Subdir:       1   206  /test2/ 
+  Subdir:       1   206  /test/ 
+  Subdir:       1   500  / 
+  Subdir:      76   206  / 
+
+Count: 3          IP: 12.81.28.144   
+  Subdir:       3   206  / 
+
+Count: 2          IP: 64.215.126.36  
+  Subdir:       2   206  / 
+
+Count: 2          IP: 216.200.51.44  
+  Subdir:       2   206  / 
+
+Count: 1          IP: 68.36.81.241   
+  Subdir:       1   206  / 
+
+Count: 1          IP: 61.144.132.130 
+  Subdir:       1   404  /scripts/ 
+
+Count: 1          IP: 159.231.71.2   
+  Subdir:       1   404  /eudora.html/ 
+
+Count: 1          IP: 216.239.46.186 
+  Subdir:       1   500  /eudora/ 
+
+Count: 1          IP: 64.217.72.58   
+  Subdir:       1   404  /scripts/ 
+
+Count: 1          IP: 166.42.40.163  
+  Subdir:       1   206  / 
+
+Count: 1          IP: 80.26.13.125   
+  Subdir:       1   206  / 
+
+
+********** Suspected Form Data Manipulation ********** 
+None found.
+
+********** Attempts to locate Proxy ********** 
+None found.
+
+********** Exceedingly Long URL's ********** 
+Totally 1 and 1 unique.
+These could indicate attempts to locate and use Buffer Overflows
+to compromise the Web Server, and shoud be considererd as serious attempts to breach Security.
+  Count Status     Length  URL             FQDN                                          
+      1    304        502  /sd/sessions/se [ Truncated ] rueyrueyuyuyuyu
+                           66.196.73.24     

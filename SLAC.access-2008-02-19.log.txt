@@ -1,0 +1,914 @@
+Security Log File Analysis
+SLAC v 2.39 $Revision: 1.92 $  http://a51.mine.nu/ 
+
+Inputfile(s): /var/wwwtornado/logs/access-2008-02-19.log
+Log Start: 2008-02-19 00:16:02
+Log Stopp: 2008-02-19 22:57:37
+nr of analyzed rows:    1401 
+nr of unique IP-addresses:      29 
+Rows identified as:
+ Apache Custom Mikes Combined       762
+ Apache Custom Combined         639
+Servers analyzed (3):                Rows
+  1.0.0.4 a51.mine.nu                    1
+  1.0.0.4 www.tornado.se               761
+  81.235.176.95 www.tornado.se         639
+
+********** Hits / hour ********** 
+   Hour       Hits
+      0          2                                                    
+      1         10                                                    
+      2          7                                                    
+      3          6                                                    
+      4          0                                                    
+      5          3                                                    
+      6          0                                                    
+      7         14                                                    
+      8         36  **                                                
+      9         25  *                                                 
+     10        471  *****************************                     
+     11        119  *******                                           
+     12          0                                                    
+     13          1                                                    
+     14          7                                                    
+     15          9                                                    
+     16        639  ***************************************           
+     17          0                                                    
+     18          1                                                    
+     19          7                                                    
+     20         24  *                                                 
+     21          8                                                    
+     22         12                                                    
+     23          0                                                    
+
+********** Successful attempts to retrieve 'Dangerous' files ********** 
+None. 
+
+********** Logged in Users **********
+Totally 1401 and 2 unique.
+    Count  User           
+      845  -              
+      556  miblo@yahoo.com
+
+********** Logged in users per IP-address (excl Anonymous) **********
+Totally 556 and 1 unique.
+    Count  User             Src-IP           FQDN
+      556  miblo@yahoo.com  90.152.101.1     host90-152-101-1.ipv4.regusnet.com
+
+********** Count of HTTP statuscodes ********** 
+Totally 1401 and 9 unique.
+    Count     ( % )     HTTP-Status 
+      722 ( 51.53%)     200 OK
+        1 (  0.07%)     206 PARTIAL_CONTENT
+        1 (  0.07%)     301 MOVED
+        6 (  0.43%)     304 NOT_MODIFIED
+        1 (  0.07%)     400 BAD_REQUEST
+        1 (  0.07%)     401 DENIED
+        3 (  0.21%)     403 FORBIDDEN
+      664 ( 47.39%)     404 NOT_FOUND
+        2 (  0.14%)     500 SERVER_ERROR
+
+********** Count of HTTP Methods ********** 
+Totally 1401 and 1 unique.
+    Count     ( % )     HTTP-Method 
+     1401 (100.00%)     GET
+
+********** Count of HTTP Versions ********** 
+Totally 1401 and 2 unique.
+    Count     ( % )    HTTP-Version 
+      714 ( 50.96%)    HTTP/1.1
+      687 ( 49.04%)    HTTP/1.0
+
+********** List illegal HTTP Versions ********** 
+None. 
+
+
+********** Top 20 HIT'ers **********
+Totally 1401 and 29 unique.
+Rank        %     Count  IP               FQDN                          
+   1 ( 45.61%)      639  1.0.0.4          1.0.0.4                       
+   2 ( 43.90%)      615  90.152.101.1     host90-152-101-1.ipv4.regusnet.com
+   3 (  1.93%)       27  148.160.250.8    gate.utb.boras.se             
+   4 (  0.93%)       13  203.177.91.252   smtp01.globe.com.ph           
+   5 (  0.93%)       13  200.89.218.130   200.89.218.130                
+   6 (  0.71%)       10  213.191.152.232  213.191.152.232               
+   7 (  0.57%)        8  85.226.215.225   c-e1d7e255.2210-4-64736c12.cust.bredbandsbolaget.se
+   8 (  0.57%)        8  65.65.56.177     65-65-56-177.ded.swbell.net   
+   9 (  0.57%)        8  213.114.214.234  c-ead672d5.02-14-73746f28.cust.bredbandsbolaget.se
+  10 (  0.57%)        8  71.195.31.217    c-71-195-31-217.hsd1.mn.comcast.net
+  11 (  0.50%)        7  194.62.232.125   194.62.232.125                
+  12 (  0.50%)        7  71.209.140.180   71-209-140-180.phnx.qwest.net 
+  13 (  0.50%)        7  195.67.9.37      195.67.9.37                   
+  14 (  0.29%)        4  213.115.254.198  213-115-254-198.secode.com    
+  15 (  0.21%)        3  66.249.73.218    crawl-66-249-73-218.googlebot.com
+  16 (  0.21%)        3  84.37.77.228     agence015792-2-4.clients.easynet.fr
+  17 (  0.21%)        3  82.112.124.79    vps.primate.es                
+  18 (  0.14%)        2  65.214.45.128    crawler4019.ask.com           
+  19 (  0.14%)        2  74.6.23.100      lj511840.crawl.yahoo.net      
+  20 (  0.14%)        2  80.123.144.98    80.123.144.98                 
+
+
+********** Access attempts generating 403/404 messages **********
+Totally 668 and 623 unique.
+  Count   Status  URL            
+     10      404  /favicon.ico   
+     10      404  /robots.txt    
+      2      404  /mysql/phpMyAdmin-2.6.3/main.php
+      2      404  /db/dbmanager/main.php
+      2      404  /mysql/phpMyAdmin-2.6.2-rc1/main.php
+      2      404  /sql/phpMyAdmin-2.6.3/main.php
+      2      404  /db/phpMyAdmin-2.6.3/main.php
+      2      404  /mysql/main.php
+      2      404  /phpMyAdmin-2.6.2-rc1/main.php
+      2      404  /database/databasemanager/main.php
+      2      404  /db/main.php   
+      2      404  /admin/phpMyAdmin-2.6.2-rc1/main.php
+      2      404  /mysql/phpMyAdmin-2.6.1-pl2/main.php
+      2      404  /db/db/main.php
+      2      404  /administrator/phpMyAdmin-2.6.2-rc1/main.php
+      2      404  /phpMyAdmin-2.6.3/main.php
+      2      404  /db/dbadmin/main.php
+      2      404  /database/phpMyAdmin-2.6.2-rc1/main.php
+      2      404  /sql/phpMyAdmin-2.6.2-rc1/main.php
+      2      404  /administrator/phpMyAdmin-2.6.3/main.php
+      2      404  /db/phpMyAdmin-2.6.2-rc1/main.php
+      2      404  /db/pma2006/main.php
+      2      404  /admin/phpMyAdmin-2.6.3/main.php
+      2      404  /admin/main.php
+      2      404  /database/phpMyAdmin-2.6.3/main.php
+      2      404  /database/database/main.php
+      2      404  /sql/sqlmanager/main.php
+      2      404  /database/databaseadmin/main.php
+      2      404  /db/pMA2006/main.php
+      1      404  /sql/phpMyAdmin-2.6.0-beta1/main.php
+      1      404  /administrator/phpMyAdmin-2.5.4/main.php
+      1      404  /mysql/sqlweb/main.php
+      1      404  /admin/phpMyAdmin-2.6.1-pl3/main.php
+      1      404  /phpMyAdmin-2.8.0-rc2/main.php
+      1      404  /administrator/pMA2006/main.php
+      1      404  /db/phpMyAdmin-2.6.3-rc1/main.php
+      1      404  /sql/phpMyAdmin-2.8.0.3/main.php
+      1      404  /administrator/webadmin/main.php
+      1      404  /db/phpMyAdmin-2.8.0-rc2/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0-rc3/main.php
+      1      404  /admin/phpMyAdmin-2.6.4/main.php
+      1      404  /slac/SLAC.apwww1.20040902.txt/_vti_bin/shtml.exe/_vti_rpc=http://www.saenterpriseworkshop.com/vnc/MIC22.txt???
+      1      404  /mysql/phpMyAdmin-2.6.4/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0-beta2/main.php
+      1      404  /db/phpMyAdmin-2.8.0.1/main.php
+      1      404  /sql/phpMyAdmin-2.5.1/main.php
+      1      404  /sql/phpmy-admin/main.php
+      1      404  /administrator/websql/main.php
+      1      404  /db/phpMyAdmin-2.6.4-pl1/main.php
+      1      404  /db/websql/main.php
+      1      404  /db/phpMyAdmin-2.8.0.4/main.php
+      1      404  /db/phpMyAdmin-2.7.0-pl1/main.php
+      1      404  /admin/PMA2005/main.php
+      1      404  /mysql/admin/main.php
+      1      404  /administrator/dbadmin/main.php
+      1      404  /admin/phpMyAdmin-2.7.0-pl2/main.php
+      1      404  /mysql/phpMyAdmin-2.6.1-rc2/main.php
+      1      404  /admin/phpMyAdmin-2.7.0/main.php
+      1      404  /admin/phpMyAdmin-2/main.php
+      1      404  /db/myadmin/main.php
+      1      404  /mysql/phpmy-admin/main.php
+      1      404  /mysql/phpMyAdmin-2.6.1/main.php
+      1      404  /mysql/pma2006/main.php
+      1      404  /administrator/phpMyAdmin-2.6.4-rc1/main.php
+      1      404  /database/phpMyAdmin-2.6.2/main.php
+      1      404  /database/phpMyAdmin-2.8.0-rc1/main.php
+      1      404  /phpMyAdmin-2.2.6/main.php
+      1      404  /administrator/phpMyAdmin-2.8.1/main.php
+      1      404  /database/database-admin/main.php
+      1      404  /admin/phpMyAdmin-2.6.0-rc3/main.php
+      1      404  /sql/phpmyadmin/main.php
+      1      404  /mysql/phpMyAdmin-2.8.0-rc1/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0-alpha2/main.php
+      1      404  /mysql/phpMyAdmin-2.8.1-rc1/main.php
+      1      404  /sql/phpMyAdmin-2/main.php
+      1      404  /mysql/mysql-admin/main.php
+      1      404  /phpMyAdmin-2.6.1-rc1/main.php
+      1      404  /sql/p/m/a/main.php
+      1      404  /admin/phpMyAdmin-2.7.0-beta1/main.php
+      1      404  /database/phpMyAdmin-2.6.0/main.php
+      1      404  /sql/phpMyAdmin-2.5.5/main.php
+      1      404  /sql/phpMyAdmin-2.8.0.1/main.php
+      1      404  /websql/main.php
+      1      404  /sql/phpMyAdmin-2.8.0-rc2/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0-pl2/main.php
+      1      404  /database/phpMyAdmin-2.7.0-pl1/main.php
+      1      404  /mysql/mysqladmin/main.php
+      1      404  /administrator/phpMyAdmin-2.7.0/main.php
+      1      404  /database/phpMyAdmin-2.8.0.1/main.php
+      1      404  /db/phpMyAdmin-2.6.0-beta2/main.php
+      1      404  /administrator/phpMyAdmin-2.5.5/main.php
+      1      404  /sql/phpMyAdmin-2.7.0-pl1/main.php
+      1      404  /db/phpMyAdmin-2.5.6/main.php
+      1      404  /administrator/phpMyAdmin-2.6.3-rc1/main.php
+      1      404  /mysql/webadmin/main.php
+      1      404  /sql/phpMyAdmin-2.5.7/main.php
+      1      404  /sql/phpMyAdmin-2.7.0-rc1/main.php
+      1      404  /mysql/phpmanager/main.php
+      1      404  /administrator/webdb/main.php
+      1      404  /database/pMA2006/main.php
+      1      404  /mysql/phpMyAdmin-2.8.1/main.php
+      1      404  /administrator/phpMyAdmin-2.6.4-pl1/main.php
+      1      404  /administrator/phpmy-admin/main.php
+      1      404  /sql/phpMyAdmin-2.8.0/main.php
+      1      404  /admin/phpMyAdmin-2.5.5-rc2/main.php
+      1      404  /mysql/pMA2005/main.php
+      1      404  /sql/phpMyAdmin-2.6.4-pl4/main.php
+      1      404  /administrator/php-myadmin/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0/main.php
+      1      404  /mysql/mysql/main.php
+      1      404  /db/phpMyAdmin-2.6.1-pl1/main.php
+      1      404  /mysql/phpMyAdmin-2.8.0/main.php
+      1      404  /admin/phpMyAdmin-2.6.1-rc2/main.php
+      1      404  /database/phpMyAdmin-2.8.0.2/main.php
+      1      404  /phpmyadmin/main.php
+      1      404  /administrator/phpMyAdmin-2.6.4-pl3/main.php
+      1      404  /phpMyAdmin-2.5.6-rc1/main.php
+      1      404  /sql/phpMyAdmin-2.8.2/main.php
+      1      404  /administrator/myadmin/main.php
+      1      404  /p/m/a/main.php
+      1      404  /phpMyAdmin-2.6.4-pl2/main.php
+      1      404  /phpmanager/main.php
+      1      404  /admin/phpMyAdmin-2.6.0/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0/main.php
+      1      404  /db/phpMyAdmin-2.8.0.3/main.php
+      1      404  /webadmin/main.php
+      1      404  /db/phpMyAdmin-2.5.6-rc1/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0-beta1/main.php
+      1      404  /sql/phpMyAdmin-2.6.2-pl1/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0-pl3/main.php
+      1      404  /database/phpMyAdmin-2.5.4/main.php
+      1      404  /sql/db/main.php
+      1      404  /mysql/phpMyAdmin-2.6.2/main.php
+      1      404  /db/phpMyAdmin-2.8.1-rc1/main.php
+      1      404  /database/phpMyAdmin-2.8.0-rc2/main.php
+      1      404  /admin/phpmyadmin/main.php
+      1      404  /database/phpMyAdmin-2.8.2/main.php
+      1      404  /phpMyAdmin-2.6.4-pl3/main.php
+      1      404  /mysql/phpMyAdmin-2.8.2/main.php
+      1      404  /mysql/phpMyAdmin-2.2.3/main.php
+      1      404  /admin/pma2005/main.php
+      1      404  /phpMyAdmin-2.6.0-pl1/main.php
+      1      404  /administrator/main.php
+      1      404  /db/phpMyAdmin-2.5.1/main.php
+      1      404  /mysql/phpMyAdmin/main.php
+      1      404  /sql/webdb/main.php
+      1      404  /sql/phpMyAdmin-2.8.0-beta1/main.php
+      1      404  /sql/phpMyAdmin-2.6.3-pl1/main.php
+      1      404  /sql/phpMyAdmin-2.5.7-pl1/main.php
+      1      404  /database/admin/main.php
+      1      404  /administrator/phpMyAdmin-2.5.5-pl1/main.php
+      1      404  /admin/websql/main.php
+      1      404  /db/phpMyAdmin-2.8.0/main.php
+      1      404  /sql/phpmanager/main.php
+      1      404  /phpMyAdmin-2.5.5/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0-pl1/main.php
+      1      404  /PMA2006/main.php
+      1      404  /database/pMA2005/main.php
+      1      404  /admin/p/m/a/main.php
+      1      404  /mysql/phpMyAdmin-2.5.5-rc2/main.php
+      1      404  /sql/phpMyAdmin-2.6.1-rc1/main.php
+      1      404  /admin/myadmin/main.php
+      1      404  /database/phpMyAdmin-2.6.0-pl2/main.php
+      1      404  /admin/sysadmin/main.php
+      1      404  /database/phpMyAdmin-2.8.1/main.php
+      1      404  /db/phpMyAdmin-2.7.0/main.php
+      1      404  /db/phpMyAdmin-2.6.0-alpha/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0-pl1/main.php
+      1      404  /database/phpMyAdmin-2.6.4/main.php
+      1      404  /admin/webdb/main.php
+      1      404  /db/phpMyAdmin-2.8.1/main.php
+      1      404  /mysql/phpMyAdmin-2.6.1-rc1/main.php
+      1      404  /db/phpMyAdmin-2.6.0/main.php
+      1      404  /admin/phpMyAdmin-2.6.3-pl1/main.php
+      1      404  /database/myadmin/main.php
+      1      404  /mysql/phpMyAdmin-2.6.4-pl2/main.php
+      1      404  /administrator/phpMyAdmin-2.5.7/main.php
+      1      404  /sql/phpMyAdmin-2.6.0-pl1/main.php
+      1      404  /database/phpMyAdmin-2/main.php
+      1      404  /phpMyAdmin-2.6.0-rc3/main.php
+      1      404  /admin/phpmanager/main.php
+      1      404  /administrator/phpMyAdmin-2.8.0-rc2/main.php
+      1      404  /administrator/phpmanager/main.php
+      1      404  /administrator/phpMyAdmin-2.6.2/main.php
+      1      404  /webdb/main.php
+      1      404  /admin/phpMyAdmin-2.5.7/main.php
+      1      404  /mysql/phpMyAdmin-2.6.3-rc1/main.php
+      1      404  /administrator/admin/main.php
+      1      404  /phpMyAdmin-2.6.1-rc2/main.php
+      1      404  /mysql/phpMyAdmin-2.5.6/main.php
+      1      404  /web/main.php  
+      1      404  /administrator/phpMyAdmin-2.7.0-pl2/main.php
+      1      404  /admin/phpMyAdmin-2.6.0-alpha/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0-rc2/main.php
+      1      404  /db/phpMyAdmin-2.8.2/main.php
+      1      404  /mysql/phpMyAdmin-2.6.4-rc1/main.php
+      1      404  /administrator/phpMyAdmin-2.5.5-rc2/main.php
+      1      404  /phpMyAdmin-2.6.0/main.php
+      1      404  /admin/phpMyAdmin-2.5.6-rc2/main.php
+      1      404  /mysql/php-myadmin/main.php
+      1      404  /db/phpMyAdmin-2.6.4-pl2/main.php
+      1      404  /administrator/web/main.php
+      1      404  /mysql-admin/main.php
+      1      404  /db/phpMyAdmin-2.5.6-rc2/main.php
+      1      403  /icons/poweredby.png
+      1      404  /administrator/phpMyAdmin-2.8.0/main.php
+      1      404  /admin/phpMyAdmin-2.5.7-pl1/main.php
+      1      404  /sql/phpMyAdmin2/main.php
+      1      404  /sql/pma2006/main.php
+      1      404  /admin/phpMyAdmin-2.2.3/main.php
+      1      404  /admin/phpMyAdmin-2.6.0-rc1/main.php
+      1      404  /administrator/phpMyAdmin-2.6.4-pl4/main.php
+      1      404  /administrator/phpMyAdmin-2.6.1-rc1/main.php
+      1      404  /mysql/p/m/a/main.php
+      1      404  /phpMyAdmin-2/main.php
+      1      404  /mysql/phpMyAdmin-2.5.5-rc1/main.php
+      1      404  /database/phpMyAdmin-2.7.0-pl2/main.php
+      1      404  /admin/phpMyAdmin-2.8.2/main.php
+      1      404  /sql/phpMyAdmin-2.5.6/main.php
+      1      404  /database/p/m/a/main.php
+      1      404  /phpMyAdmin-2.5.6/main.php
+      1      404  /admin/mysql/main.php
+      1      404  /phpMyAdmin-2.6.0-beta1/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0-rc3/main.php
+      1      404  /sql/pma2005/main.php
+      1      404  /sql/sql-admin/main.php
+      1      404  /mysql/phpMyAdmin-2.5.4/main.php
+      1      404  /db/dbweb/main.php
+      1      404  /db/phpmyadmin/main.php
+      1      404  /database/phpMyAdmin-2.6.0-beta1/main.php
+      1      404  /mysql/phpMyAdmin-2/main.php
+      1      404  /phpMyAdmin-2.8.0.2/main.php
+      1      404  /admin/sqladmin/main.php
+      1      404  /phpMyAdmin/main.php
+      1      404  /database/php-my-admin/main.php
+      1      404  /phpMyAdmin-2.6.2-beta1/main.php
+      1      404  /administrator/phpMyAdmin-2.6.1-rc2/main.php
+      1      404  /phpMyAdmin-2.5.6-rc2/main.php
+      1      404  /sql/phpMyAdmin-2.8.1/main.php
+      1      404  /pma2005/main.php
+      1      404  /database/phpMyAdmin-2.2.6/main.php
+      1      404  /administrator/phpMyAdmin/main.php
+      1      404  /administrator/mysql/main.php
+      1      404  /db/phpMyAdmin-2.7.0-pl2/main.php
+      1      404  /database/websql/main.php
+      1      403  /consultant/English%20CV%20Mike%20Blomgren%202005-01.rtf
+      1      404  /myadmin/main.php
+      1      404  /database/phpMyAdmin-2.6.4-pl4/main.php
+      1      404  /sql/sqladmin/main.php
+      1      404  /admin/phpMyAdmin-2.5.6/main.php
+      1      404  /database/phpMyAdmin-2.6.4-pl1/main.php
+      1      404  /phpMyAdmin-2.7.0-pl1/main.php
+      1      404  /sql/phpMyAdmin-2.8.1-rc1/main.php
+      1      404  /sql/phpMyAdmin-2.8.0.2/main.php
+      1      404  /admin/phpMyAdmin-2.7.0-pl1/main.php
+      1      404  /mysql/phpMyAdmin2/main.php
+      1      404  /phpMyAdmin-2.8.0.3/main.php
+      1      404  /administrator/phpMyAdmin-2.6.2-pl1/main.php
+      1      404  /db/pMA2005/main.php
+      1      404  /sql/phpMyAdmin-2.2.6/main.php
+      1      404  /sql/pMA2006/main.php
+      1      404  /admin/mysqlmanager/main.php
+      1      404  /mysql/phpMyAdmin-2.5.5/main.php
+      1      404  /administrator/phpMyAdmin-2.2.6/main.php
+      1      404  /database/phpMyAdmin-2.5.6-rc2/main.php
+      1      404  /admin/phpMyAdmin-2.5.5/main.php
+      1      404  /mysql/mysqlmanager/main.php
+      1      404  /admin/phpMyAdmin-2.6.0-alpha2/main.php
+      1      404  /db/webadmin/main.php
+      1      404  /sql/phpMyAdmin-2.7.0-beta1/main.php
+      1      404  /db/phpMyAdmin-2.6.2-beta1/main.php
+      1      404  /admin/phpMyAdmin-2.6.0-pl1/main.php
+      1      404  /mysql/phpMyAdmin-2.5.7-pl1/main.php
+      1      404  /database/phpMyAdmin-2.5.5-rc2/main.php
+      1      404  /database/phpMyAdmin-2.6.0-pl3/main.php
+      1      404  /database/phpMyAdmin-2.6.2-pl1/main.php
+      1      404  /phpMyAdmin-2.8.0-beta1/main.php
+      1      404  /mysql/pma2005/main.php
+      1      404  /sql/phpMyAdmin-2.6.0/main.php
+      1      404  /admin/phpMyAdmin-2.6.4-pl3/main.php
+      1      404  /administrator/phpMyAdmin-2.6.1-pl2/main.php
+      1      404  /db/php-my-admin/main.php
+      1      404  /sql/phpMyAdmin-2.6.1/main.php
+      1      404  /sql/phpMyAdmin-2.6.0-pl3/main.php
+      1      404  /admin/db/main.php
+      1      404  /sql/phpMyAdmin-2.5.6-rc2/main.php
+      1      404  /mysql/phpMyAdmin-2.7.0-beta1/main.php
+      1      404  /administrator/phpMyAdmin-2.8.1-rc1/main.php
+      1      404  /sql/phpMyAdmin-2.8.0.4/main.php
+      1      404  /database/phpMyAdmin-2.6.4-pl2/main.php
+      1      404  /administrator/phpMyAdmin-2.8.0-beta1/main.php
+      1      404  /admin/phpMyAdmin-2.5.5-pl1/main.php
+      1      404  /db/phpMyAdmin-2.8.0.2/main.php
+      1      404  /db/phpMyAdmin-2.5.5/main.php
+      1      404  /sql/sql/main.php
+      1      404  /sql/admin/main.php
+      1      404  /admin/mysql-admin/main.php
+      1      404  /database/phpMyAdmin-2.7.0/main.php
+      1      404  /admin/phpMyAdmin-2.8.0/main.php
+      1      404  /phpMyAdmin-2.6.0-rc1/main.php
+      1      404  /admin/phpMyAdmin-2.6.1/main.php
+      1      404  /phpMyAdmin-2.8.1-rc1/main.php
+      1      404  /administrator/phpMyAdmin-2.8.0.1/main.php
+      1      404  /database/phpMyAdmin-2.6.1-pl3/main.php
+      1      404  /db/phpMyAdmin-2.2.6/main.php
+      1      404  /administrator/phpMyAdmin-2.5.7-pl1/main.php
+      1      404  /database/php-myadmin/main.php
+      1      404  /database/phpmyadmin/main.php
+      1      404  /mysql/phpMyAdmin-2.6.4-pl3/main.php
+      1      404  /database/phpmyadmin2/main.php
+      1      404  /db/phpMyAdmin-2.6.0-rc1/main.php
+      1      404  /sql/php-myadmin/main.php
+      1      404  /phpMyAdmin-2.6.0-beta2/main.php
+      1      404  /database/phpMyAdmin-2.6.0-alpha/main.php
+      1      404  /sqlweb/main.php
+      1      404  /db/web/main.php
+      1      404  /mysql/web/main.php
+      1      404  /phpMyAdmin-2.6.0-rc2/main.php
+      1      404  /admin/pma2006/main.php
+      1      404  /phpMyAdmin-2.7.0-beta1/main.php
+      1      404  /database/phpMyAdmin-2.5.7-pl1/main.php
+      1      404  /admin/phpMyAdmin-2.8.0-beta1/main.php
+      1      404  /sql/pMA/main.php
+      1      404  /administrator/sqlmanager/main.php
+      1      400  /w00tw00t.at.ISC.SANS.DFind:)
+      1      404  /administrator/phpMyAdmin-2.5.6-rc1/main.php
+      1      404  /phpMyAdmin-2.5.1/main.php
+      1      404  /admin/phpMyAdmin-2.6.4-rc1/main.php
+      1      404  /mysql/phpMyAdmin-2.6.3-pl1/main.php
+      1      404  /mysql/phpmyadmin/main.php
+      1      404  /administrator/phpMyAdmin-2.6.3-pl1/main.php
+      1      404  /db/phpMyAdmin-2.8.0-beta1/main.php
+      1      404  /database/web/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0-pl3/main.php
+      1      404  /db/phpMyAdmin-2.6.4-pl4/main.php
+      1      404  /database/webadmin/main.php
+      1      404  /phpMyAdmin-2.6.1-pl3/main.php
+      1      404  /admin/phpMyAdmin-2.8.1-rc1/main.php
+      1      404  /database/phpMyAdmin-2.6.0-rc1/main.php
+      1      404  /phpMyAdmin-2.8.0/main.php
+      1      404  /database/phpMyAdmin-2.6.1-rc1/main.php
+      1      404  /_vti_bin/shtml.exe/_vti_rpc=http://www.saenterpriseworkshop.com/vnc/MIC22.txt???
+      1      404  /db/phpmanager/main.php
+      1      404  /sql/phpMyAdmin-2.6.0-rc2/main.php
+      1      404  /mysql/myadmin/main.php
+      1      404  /mysql/sqlmanager/main.php
+      1      404  /db/phpmy-admin/main.php
+      1      404  /phpMyAdmin-2.6.3-rc1/main.php
+      1      404  /administrator/phpMyAdmin-2.5.6-rc2/main.php
+      1      404  /mysql/phpMyAdmin-2.8.0.3/main.php
+      1      404  /admin/phpMyAdmin-2.6.2-pl1/main.php
+      1      404  /mysql/pMA2006/main.php
+      1      404  /mysql/phpmyadmin2/main.php
+      1      404  /database/phpMyAdmin-2.6.1-pl1/main.php
+      1      404  /admin/phpMyAdmin-2.6.0-pl2/main.php
+      1      404  /mysqlmanager/main.php
+      1      404  /admin/phpMyAdmin/main.php
+      1      404  /mysql/phpMyAdmin-2.6.1-pl1/main.php
+      1      404  /db/phpMyAdmin-2.6.0-pl1/main.php
+      1      404  /sql/phpMyAdmin-2.6.2/main.php
+      1      404  /admin/phpMyAdmin-2.6.0-beta2/main.php
+      1      404  /phpMyAdmin-2.6.2/main.php
+      1      404  /admin/phpMyAdmin-2.8.0.1/main.php
+      1      404  /mysql/phpMyAdmin-2.6.4-pl4/main.php
+      1      404  /database/pma2006/main.php
+      1      404  /phpMyAdmin-2.7.0-rc1/main.php
+      1      404  /sql/php-my-admin/main.php
+      1      404  /database/phpMyAdmin-2.6.0-rc3/main.php
+      1      404  /admin/pMA/main.php
+      1      404  /phpmy-admin/main.php
+      1      404  /db/php-myadmin/main.php
+      1      404  /phpMyAdmin-2.6.2-pl1/main.php
+      1      404  /admin/phpMyAdmin-2.2.6/main.php
+      1      404  /mysql/phpMyAdmin-2.6.2-beta1/main.php
+      1      404  /mysql/dbadmin/main.php
+      1      404  /phpMyAdmin-2.7.0-pl2/main.php
+      1      404  /sql/phpMyAdmin-2.8.0-rc1/main.php
+      1      404  /phpMyAdmin-2.8.2/main.php
+      1      404  /sql/main.php  
+      1      404  /sql/phpMyAdmin-2.6.4-pl3/main.php
+      1      404  /sql/phpMyAdmin-2.6.0-rc3/main.php
+      1      404  /administrator/phpMyAdmin-2.5.1/main.php
+      1      404  /admin/phpmyadmin2/main.php
+      1      404  /database/phpMyAdmin-2.8.0/main.php
+      1      404  /administrator/phpmyadmin/main.php
+      1      404  /admin/phpMyAdmin-2.8.1/main.php
+      1      404  /database/phpMyAdmin-2.7.0-rc1/main.php
+      1      404  /sql/phpmyadmin2/main.php
+      1      404  /db/phpMyAdmin-2.6.0-beta1/main.php
+      1      404  /administrator/phpMyAdmin-2.8.0.4/main.php
+      1      404  /admin/sqlmanager/main.php
+      1      404  /consultant.html
+      1      404  /slac/_vti_bin/shtml.exe/_vti_rpc=http://www.saenterpriseworkshop.com/vnc/MIC22.txt???
+      1      404  /db/phpMyAdmin-2.6.0-pl2/main.php
+      1      404  /phpMyAdmin-2.2.3/main.php
+      1      404  /PMA2005/main.php
+      1      404  /mysql/phpMyAdmin-2.5.6-rc2/main.php
+      1      404  /sql/phpMyAdmin-2.2.3/main.php
+      1      404  /phpMyAdmin-2.8.0-rc1/main.php
+      1      404  /mysql/phpMyAdmin-2.8.0-beta1/main.php
+      1      404  /db/admin/main.php
+      1      404  /database/phpMyAdmin-2.8.0.3/main.php
+      1      404  /phpMyAdmin-2.6.4-pl1/main.php
+      1      404  /db/phpMyAdmin-2.6.1-rc2/main.php
+      1      404  /db/phpMyAdmin-2.7.0-beta1/main.php
+      1      404  /mysqladmin/main.php
+      1      404  /admin/phpMyAdmin-2.6.4-pl4/main.php
+      1      404  /admin/phpMyAdmin-2.6.0-beta1/main.php
+      1      404  /db/phpMyAdmin-2.8.0-rc1/main.php
+      1      404  /mysql/phpMyAdmin-2.7.0-pl2/main.php
+      1      404  /db/phpMyAdmin-2.6.4/main.php
+      1      404  /phpMyAdmin-2.6.1-pl1/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0-pl2/main.php
+      1      404  /phpMyAdmin-2.5.4/main.php
+      1      404  /admin/PMA2006/main.php
+      1      404  /database/phpMyAdmin-2.5.6/main.php
+      1      404  /db/phpMyAdmin-2.5.5-rc1/main.php
+      1      404  /administrator/mysqladmin/main.php
+      1      404  /database/phpMyAdmin-2.5.7/main.php
+      1      404  /administrator/phpMyAdmin-2.7.0-rc1/main.php
+      1      404  /administrator/phpMyAdmin-2.6.2-beta1/main.php
+      1      404  /mysql/phpMyAdmin-2.5.7/main.php
+      1      404  /mysql/phpMyAdmin-2.8.0.2/main.php
+      1      404  /mysql/phpMyAdmin-2.7.0/main.php
+      1      404  /admin/phpMyAdmin2/main.php
+      1      404  /database/webdb/main.php
+      1      404  /administrator/phpMyAdmin-2.5.6/main.php
+      1      404  /php-myadmin/main.php
+      1      404  /administrator/sqlweb/main.php
+      1      404  /admin/phpMyAdmin-2.6.0-rc2/main.php
+      1      404  /administrator/phpMyAdmin-2.7.0-pl1/main.php
+      1      404  /admin/phpMyAdmin-2.5.1/main.php
+      1      404  /sql/phpMyAdmin-2.6.0-alpha2/main.php
+      1      404  /sql/phpMyAdmin-2.6.4-pl1/main.php
+      1      404  /admin/phpMyAdmin-2.6.0-pl3/main.php
+      1      404  /sql/phpMyAdmin-2.6.4-pl2/main.php
+      1      404  /admin/phpMyAdmin-2.6.2-beta1/main.php
+      1      404  /phpMyAdmin-2.7.0/main.php
+      1      404  /db/phpMyAdmin-2.6.0-pl3/main.php
+      1      404  /sql/dbadmin/main.php
+      1      404  /sql/phpMyAdmin-2.5.6-rc1/main.php
+      1      404  /sql/phpMyAdmin-2.6.1-pl1/main.php
+      1      404  /administrator/pMA2005/main.php
+      1      404  /database/phpmy-admin/main.php
+      1      404  /phpMyAdmin-2.6.4-pl4/main.php
+      1      404  /PMA/main.php  
+      1      404  /sql/phpMyAdmin-2.6.4-rc1/main.php
+      1      404  /sql/web/main.php
+      1      404  /admin/phpmy-admin/main.php
+      1      404  /database/phpMyAdmin-2.6.1/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0-beta2/main.php
+      1      404  /admin/phpMyAdmin-2.8.0.2/main.php
+      1      404  /mysql/phpMyAdmin-2.8.0-rc2/main.php
+      1      404  /phpMyAdmin-2.8.0.4/main.php
+      1      404  /database/phpMyAdmin-2.6.3-pl1/main.php
+      1      404  /sql/phpMyAdmin/main.php
+      1      404  /administrator/mysql-admin/main.php
+      1      404  /db/phpMyAdmin-2.5.5-rc2/main.php
+      1      404  /administrator/phpMyAdmin-2.6.4-pl2/main.php
+      1      404  /database/phpMyAdmin-2.6.0-rc2/main.php
+      1      404  /sql/sqlweb/main.php
+      1      404  /database/pma2005/main.php
+      1      404  /db/phpmyadmin2/main.php
+      1      404  /db/webdb/main.php
+      1      404  /sql/phpMyAdmin-2.6.4/main.php
+      1      404  /db/phpMyAdmin-2.6.0-alpha2/main.php
+      1      404  /db/phpMyAdmin-2.6.1-pl2/main.php
+      1      404  /admin/phpMyAdmin-2.6.1-rc1/main.php
+      1      404  /db/phpMyAdmin-2.5.7-pl1/main.php
+      1      404  /database/phpMyAdmin-2.6.4-rc1/main.php
+      1      404  /database/phpMyAdmin-2.5.1/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0-rc2/main.php
+      1      404  /phpMyAdmin-2.6.0-alpha2/main.php
+      1      404  /database/phpMyAdmin-2.5.5/main.php
+      1      404  /mysql/db/main.php
+      1      404  /phpMyAdmin-2.8.1/main.php
+      1      404  /phpMyAdmin-2.5.7/main.php
+      1      404  /sql/websql/main.php
+      1      404  /_vti_bin/shtml.exe/_vti_rpc=http://vps.istri.info/~vpsistri/images/canboy?
+      1      404  /admin/sqlweb/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0-alpha/main.php
+      1      404  /mysql/phpMyAdmin-2.5.1/main.php
+      1      404  /administrator/pMA/main.php
+      1      404  /db/phpMyAdmin-2.2.3/main.php
+      1      404  /sql/phpMyAdmin-2.6.1-pl3/main.php
+      1      404  /phpmyadmin2/main.php
+      1      404  /db/phpMyAdmin-2.6.1-pl3/main.php
+      1      404  /db/phpMyAdmin-2.6.0-rc3/main.php
+      1      404  /sql/phpMyAdmin-2.7.0/main.php
+      1      404  /sql/phpMyAdmin-2.7.0-pl2/main.php
+      1      404  /db/phpMyAdmin-2.6.1-rc1/main.php
+      1      404  /database/phpMyAdmin-2.6.1-rc2/main.php
+      1      404  /administrator/phpMyAdmin-2.8.0.3/main.php
+      1      404  /sql/phpMyAdmin-2.6.3-rc1/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0-rc1/main.php
+      1      404  /sql/phpMyAdmin-2.6.0-alpha/main.php
+      1      404  /administrator/pma2006/main.php
+      1      404  /mysql/phpMyAdmin-2.6.2-pl1/main.php
+      1      404  /db/phpMyAdmin2/main.php
+      1      404  /phpMyAdmin-2.6.4-rc1/main.php
+      1      404  /db/phpMyAdmin-2.6.2/main.php
+      1      404  /database/pMA/main.php
+      1      404  /administrator/phpMyAdmin-2.6.1/main.php
+      1      404  /admin/phpMyAdmin-2.6.4-pl2/main.php
+      1      404  /administrator/phpMyAdmin-2.6.1-pl3/main.php
+      1      404  /administrator/db/main.php
+      1      404  /db/phpMyAdmin-2.5.7/main.php
+      1      404  /admin/phpMyAdmin-2.5.5-rc1/main.php
+      1      404  /mysql/php-my-admin/main.php
+      1      404  /database/phpMyAdmin-2.6.1-pl2/main.php
+      1      404  /db/phpMyAdmin-2.6.3-pl1/main.php
+      1      404  /mysql/phpMyAdmin-2.6.4-pl1/main.php
+      1      404  /administrator/phpMyAdmin-2/main.php
+      1      404  /mysql/phpMyAdmin-2.7.0-pl1/main.php
+      1      404  /db/phpMyAdmin-2.6.4-rc1/main.php
+      1      404  /database/phpmanager/main.php
+      1      404  /db/phpMyAdmin-2.5.4/main.php
+      1      404  /administrator/mysqlmanager/main.php
+      1      404  /sql/phpMyAdmin-2.6.1-pl2/main.php
+      1      404  /sql/phpMyAdmin-2.5.5-rc2/main.php
+      1      404  /database/main.php
+      1      404  /mysql/phpMyAdmin-2.7.0-rc1/main.php
+      1      404  /db/p/m/a/main.php
+      1      404  /sql/phpMyAdmin-2.6.2-beta1/main.php
+      1      404  /db/phpMyAdmin-2.6.0-rc2/main.php
+      1      404  /sql/phpMyAdmin-2.5.5-rc1/main.php
+      1      404  /mysql/websql/main.php
+      1      404  /dbadmin/main.php
+      1      404  /admin/mysqladmin/main.php
+      1      404  /database/databaseweb/main.php
+      1      404  /administrator/phpMyAdmin-2.5.5-rc1/main.php
+      1      404  /phpMyAdmin-2.5.5-rc1/main.php
+      1      404  /db/phpMyAdmin-2.7.0-rc1/main.php
+      1      404  /mysql/phpMyAdmin-2.6.1-pl3/main.php
+      1      404  /phpMyAdmin-2.5.5-pl1/main.php
+      1      404  /pma2006/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0-alpha/main.php
+      1      404  /mysql/phpMyAdmin-2.5.5-pl1/main.php
+      1      404  /phpMyAdmin-2.5.5-rc2/main.php
+      1      404  /administrator/phpMyAdmin-2.2.3/main.php
+      1      404  /admin/phpMyAdmin-2.6.1-pl1/main.php
+      1      404  /mysql/pMA/main.php
+      1      404  /phpMyAdmin-2.8.0.1/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0-rc1/main.php
+      1      404  /database/phpMyAdmin-2.5.5-pl1/main.php
+      1      404  /sql/phpMyAdmin-2.6.0-pl2/main.php
+      1      404  /administrator/phpMyAdmin-2.8.2/main.php
+      1      404  /db/phpMyAdmin/main.php
+      1      404  /database/phpMyAdmin-2.6.0-beta2/main.php
+      1      404  /admin/php-myadmin/main.php
+      1      403  /              
+      1      404  /database/phpMyAdmin-2.8.0.4/main.php
+      1      404  /sql/phpMyAdmin-2.5.4/main.php
+      1      404  /admin/phpMyAdmin-2.6.3-rc1/main.php
+      1      404  /php-my-admin/main.php
+      1      404  /database/phpMyAdmin-2.2.3/main.php
+      1      404  /db/pMA/main.php
+      1      404  /database/phpMyAdmin2/main.php
+      1      404  /administrator/p/m/a/main.php
+      1      404  /mysql/webdb/main.php
+      1      404  /sql/phpMyAdmin-2.6.0-rc1/main.php
+      1      404  /database/phpMyAdmin/main.php
+      1      404  /admin/phpMyAdmin-2.8.0-rc2/main.php
+      1      404  /admin/phpMyAdmin-2.5.4/main.php
+      1      404  /admin/php-my-admin/main.php
+      1      404  /database/phpMyAdmin-2.8.1-rc1/main.php
+      1      404  /admin/phpMyAdmin-2.8.0.3/main.php
+      1      404  /sql/myadmin/main.php
+      1      404  /sql/phpMyAdmin-2.5.5-pl1/main.php
+      1      404  /db/phpMyAdmin-2/main.php
+      1      404  /administrator/phpMyAdmin-2.6.0-alpha2/main.php
+      1      404  /mysql/phpMyAdmin-2.6.0-beta1/main.php
+      1      404  /sql/phpMyAdmin-2.6.1-rc2/main.php
+      1      404  /admin/phpMyAdmin-2.8.0-rc1/main.php
+      1      404  /admin/web/main.php
+      1      404  /database/phpMyAdmin-2.6.3-rc1/main.php
+      1      404  /administrator/phpMyAdmin-2.7.0-beta1/main.php
+      1      404  /admin/webadmin/main.php
+      1      404  /database/phpMyAdmin-2.6.2-beta1/main.php
+      1      404  /administrator/php-my-admin/main.php
+      1      404  /db/phpMyAdmin-2.6.2-pl1/main.php
+      1      404  /db/phpMyAdmin-2.5.5-pl1/main.php
+      1      404  /admin/phpMyAdmin-2.7.0-rc1/main.php
+      1      404  /db/phpMyAdmin-2.6.4-pl3/main.php
+      1      404  /mysql/phpMyAdmin-2.8.0.1/main.php
+      1      404  /sql/pMA2005/main.php
+      1      404  /admin/phpMyAdmin-2.6.1-pl2/main.php
+      1      404  /admin/phpMyAdmin-2.6.4-pl1/main.php
+      1      404  /database/phpMyAdmin-2.8.0-beta1/main.php
+      1      404  /administrator/pma2005/main.php
+      1      404  /mysql/phpMyAdmin-2.2.6/main.php
+      1      404  /phpMyAdmin-2.5.7-pl1/main.php
+      1      404  /phpMyAdmin-2.6.4/main.php
+      1      404  /mysql/phpMyAdmin-2.8.0.4/main.php
+      1      404  /administrator/phpMyAdmin-2.8.0.2/main.php
+      1      404  /database/phpMyAdmin-2.6.0-pl1/main.php
+      1      404  /database/phpMyAdmin-2.6.4-pl3/main.php
+      1      404  /phpMyAdmin-2.6.0-alpha/main.php
+      1      404  /db/db-admin/main.php
+      1      404  /sqlmanager/main.php
+      1      404  /database/phpMyAdmin-2.5.5-rc1/main.php
+      1      404  /sql/phpMyAdmin-2.6.0-beta2/main.php
+      1      404  /database/phpMyAdmin-2.6.0-alpha2/main.php
+      1      404  /admin/phpMyAdmin-2.6.2/main.php
+      1      404  /administrator/phpmyadmin2/main.php
+      1      404  /phpMyAdmin2/main.php
+      1      404  /sql/webadmin/main.php
+      1      404  /administrator/phpMyAdmin-2.6.4/main.php
+      1      404  /phpMyAdmin-2.6.3-pl1/main.php
+      1      404  /database/phpMyAdmin-2.7.0-beta1/main.php
+      1      404  /phpMyAdmin-2.6.1/main.php
+      1      404  /db/phpMyAdmin-2.6.1/main.php
+      1      404  /phpMyAdmin-2.6.0-pl3/main.php
+      1      404  /database/phpMyAdmin-2.5.6-rc1/main.php
+      1      404  /administrator/phpMyAdmin2/main.php
+      1      404  /db/pma2005/main.php
+      1      404  /administrator/phpMyAdmin-2.6.1-pl1/main.php
+      1      404  /phpMyAdmin-2.6.1-pl2/main.php
+      1      404  /administrator/phpMyAdmin-2.8.0-rc1/main.php
+      1      404  /admin/phpMyAdmin-2.5.6-rc1/main.php
+      1      404  /admin/phpMyAdmin-2.8.0.4/main.php
+      1      404  /phpMyAdmin-2.6.0-pl2/main.php
+      1      404  /mysql/phpMyAdmin-2.5.6-rc1/main.php
+
+
+********** Top 20 IP's generating 403/404 **********
+Totally 668 and 20 unique.
+Rank   Count   IP-Address       FQDN
+   1     639   1.0.0.4          1.0.0.4
+   2       3   213.115.254.198  213-115-254-198.secode.com
+   3       3   213.191.152.232  213.191.152.232
+   4       3   82.112.124.79    vps.primate.es
+   5       2   84.37.77.228     agence015792-2-4.clients.easynet.fr
+   6       2   74.6.23.100      lj511840.crawl.yahoo.net
+   7       2   80.123.144.98    80.123.144.98
+   8       2   131.107.151.157  131.107.151.157
+   9       1   85.226.215.225   c-e1d7e255.2210-4-64736c12.cust.bredbandsbolaget.se
+  10       1   193.34.16.201    srv92.hosteur.com
+  11       1   65.65.56.177     65-65-56-177.ded.swbell.net
+  12       1   208.36.144.9     crawl-18.cuill.com
+  13       1   66.249.73.218    crawl-66-249-73-218.googlebot.com
+  14       1   65.214.45.128    crawler4019.ask.com
+  15       1   213.114.214.234  c-ead672d5.02-14-73746f28.cust.bredbandsbolaget.se
+  16       1   200.89.218.130   200.89.218.130
+  17       1   88.131.106.9     c09.entireweb.com
+  18       1   193.47.80.42     crawl6.exabot.com
+  19       1   217.7.99.41      217.7.99.41
+  20       1   213.115.30.19    static-213-115-30-19.sme.bredbandsbolaget.se
+
+
+********** Top 20 Files per IP genererating 403/404 **********
+Totally 668 and 636 unique.
+This could inidicate either faultly links on your site, or
+a perpetrator looking for vulnerabilities.
+Rank   Count  Src IP           URL
+   1       3  213.191.152.232  /favicon.ico
+   2       2  1.0.0.4          /database/databaseadmin/main.php
+   3       2  1.0.0.4          /db/dbmanager/main.php
+   4       2  1.0.0.4          /database/databasemanager/main.php
+   5       2  131.107.151.157  /robots.txt
+   6       2  1.0.0.4          /db/pma2006/main.php
+   7       2  1.0.0.4          /mysql/phpMyAdmin-2.6.2-rc1/main.php
+   8       2  1.0.0.4          /administrator/phpMyAdmin-2.6.3/main.php
+   9       2  1.0.0.4          /database/database/main.php
+  10       2  1.0.0.4          /db/phpMyAdmin-2.6.2-rc1/main.php
+  11       2  1.0.0.4          /mysql/phpMyAdmin-2.6.3/main.php
+  12       2  1.0.0.4          /mysql/main.php
+  13       2  1.0.0.4          /db/pMA2006/main.php
+  14       2  1.0.0.4          /mysql/phpMyAdmin-2.6.1-pl2/main.php
+  15       2  1.0.0.4          /sql/phpMyAdmin-2.6.3/main.php
+  16       2  74.6.23.100      /robots.txt
+  17       2  1.0.0.4          /phpMyAdmin-2.6.3/main.php
+  18       2  1.0.0.4          /db/dbadmin/main.php
+  19       2  1.0.0.4          /sql/sqlmanager/main.php
+  20       2  1.0.0.4          /db/db/main.php
+
+********** Top 20 IP's causing Server Errors (5xx) ********** 
+Totally 2 and 1 unique.
+  Count  Status   Src IP          FQDN
+      2  500      90.152.101.1    host90-152-101-1.ipv4.regusnet.com
+
+********** Top 20 URL's causing Server Errors (5xx) ********** 
+Totally 2 and 2 unique.
+  Count  Status   URL                 
+      1  500      /cgi-bin/cv2.cgi?file=slask3
+      1  500      /cgi-bin/cv2.cgi?file=slask2
+
+********** Top 20 URL's & IP's causing Server Errors (5xx) ********** 
+Totally 2 and 2 unique.
+  Count  Status   Src IP           URL
+      1  500      90.152.101.1     /cgi-bin/cv2.cgi?file=slask2
+      1  500      90.152.101.1     /cgi-bin/cv2.cgi?file=slask3
+
+********** URL's containing binary data ********** 
+None Found. 
+
+********** Top 20 Referers ********** 
+Totally 1401 and 78 unique.
+  Count  Referer                                           
+    730  -                                                  
+    165  http://www.tornado.se//blomgren/index.cgi?mode=album&album=./2007 
+     64  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/2007/2007_12_22--26%20Jul%20p%e5%20%d6stnora/2007_12_24 
+     46  http://www.tornado.se/                             
+     31  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/2007/2007_11_03%20PIP 
+     28  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/1999/1999_12--2000_01%20326-935843%20Vintern%201999-2000%2c%20%d6stnorabadet 
+     25  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/2000/2000_11%20772-699481%20H%f6sten%202000%2c%20Julia%204%20%e5r%2c%20Samuel%202%20%e5r%2c%20Kalas%20p%e5%20%d6-A 
+     25  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/1999/1999_12--2000_01%20326-935842%20Vintern%201999-2000%2c%20Ute%20i%20Sn%f6n%2c%20Bad 
+     23  http://www.tornado.se//blomgren/index.cgi?mode=album&album=./1999 
+     22  http://www.tornado.se/slac/                        
+     16  http://www.tornado.se/blomgren/                    
+     15  http://www.tornado.se//blomgren/index.cgi?         
+     12  http://www.tornado.se/slac/fw1repexplained.html    
+     12  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/2007/2007_12_23--26%20PIP%20Jul%20i%20Valne/2007_12_23 
+     10  http://www.tornado.se/slac/index.html              
+      9  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/2007/2007_09_08%20PIP 
+      8  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/2000 
+      7  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/2008/2008_01_23%20Granny%20p%e5%20Middag%20i%20Bromma 
+      6  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/1999/Video-%d6stnora%201999-11-09 
+      6  http://www.tornado.se//blomgren/index.cgi?mode=album&album=/2007/2007_12_22--26%20Jul%20p%e5%20%d6stnora 
+
+********** Top 20 Blank Referers ********** 
+Totally 730 and 661 unique.
+  Count  IP              Referer      
+     18  90.152.101.1    /cgi-bin/cv2.cgi?file=slask2 
+     13  90.152.101.1    /cgi-bin/cv2.cgi?file=slask2&Q0=88.131.106.9 
+      4  90.152.101.1    /cgi-bin/cv2.cgi?file=slask3 
+      4  90.152.101.1    /cgi-bin/cv2.cgi?file=slask 
+      3  213.191.152.232 /favicon.ico 
+      2  1.0.0.4         /database/databaseadmin/main.php 
+      2  90.152.101.1    /cgi-bin/cv2.cgi 
+      2  1.0.0.4         /db/dbmanager/main.php 
+      2  1.0.0.4         /database/databasemanager/main.php 
+      2  131.107.151.157 /robots.txt  
+      2  1.0.0.4         /db/pma2006/main.php 
+      2  1.0.0.4         /mysql/phpMyAdmin-2.6.2-rc1/main.php 
+      2  1.0.0.4         /administrator/phpMyAdmin-2.6.3/main.php 
+      2  1.0.0.4         /database/database/main.php 
+      2  1.0.0.4         /db/phpMyAdmin-2.6.2-rc1/main.php 
+      2  1.0.0.4         /mysql/phpMyAdmin-2.6.3/main.php 
+      2  1.0.0.4         /mysql/main.php 
+      2  1.0.0.4         /db/pMA2006/main.php 
+      2  1.0.0.4         /mysql/phpMyAdmin-2.6.1-pl2/main.php 
+      2  1.0.0.4         /sql/phpMyAdmin-2.6.3/main.php 
+
+********** Browsers ********** 
+Totally 1401 and 24 unique.
+  Count  Browser                                           
+    640  -                                                  
+    625  Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.12) Gecko/20080201 Firefox/2.0.0.12 
+     34  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0) 
+     13  Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506; .NET CLR 1.1.4322; InfoPath.2) 
+     13  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) 
+      9  Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1) 
+      8  Mozilla/5.0 (Macintosh; U; PPC Mac OS X; sv-se) AppleWebKit/523.10.6 (KHTML, like Gecko) Version/3.0.4 Safari/523.10.6 
+      8  Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.12) Gecko/20070508 Firefox/1.5.0.12 
+      7  Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; FunWebProducts; .NET CLR 1.0.3705; .NET CLR 1.1.4322; .NET CLR 2.0.50727; MSN 9.0;MSN 9.1; MSNbQ002; MSNmen-us; MSNcOTH) 
+      7  Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; yplus 5.1.04b) 
+      7  Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322) 
+      4  Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; InfoPath.1; .NET CLR 3.0.04506.30; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648) 
+      4  Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp) 
+      3  Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html) 
+      3  Mozilla/5.0 (Windows; U; Windows NT 5.1; fr; rv:1.8.1.12) Gecko/20080201 Firefox/2.0.0.12 
+      3  libwww-perl/5.65                                   
+      2  Mozilla/5.0 (compatible; Ask Jeeves/Teoma; +http://about.ask.com/en/docs/about/webmasters.shtml) 
+      2  MSRBOT (http://research.microsoft.com/research/sv/msrbot/ 
+      2  McBot/5.001 (windows; U; NT4.0; en-us)             
+      2  Speedy Spider (http://www.entireweb.com/about/search_tech/speedy_spider/) 
+      2  Mozilla/5.0 (compatible; Exabot/3.0; +http://www.exabot.com/go/robot) 
+      1  libwww-perl/5.808                                  
+      1  Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; InfoPath.1; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30; .NET CLR 1.1.4322; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022) 
+      1  Mozilla/5.0 (Twiceler-0.9 http://www.cuill.com/twiceler/robot.html) 
+
+********** Same Cookie from different IP-addresses ********** 
+None. 
+
+********** Cross Site Scripting Attempts per IP *********
+None found.
+
+********** Unsuccessful Subdirectory Listing Attempts ********** 
+Totally 1 and 1 unique.
+  Count  Status URL                            IP              FQDN
+      1     403 /                              213.115.254.198 213-115-254-198.secode.com
+
+********** Unsuccessful Subdir attempts per IP ********
+Count: 1          IP: 213.115.254.198 213-115-254-198.secode.com
+  Subdir:       1   403  / 
+
+
+********** Suspected Form Data Manipulation ********** 
+Totally 3 and 3 unique.
+This could inidicate attempted unauthorized database access.
+  Count Query                          IP              FQDN                                
+      1 file=%2Fvar%2Fwwwtornado%2Flogs%2Faccess-2008-02-14.log;Q4=paula%40tornado.se&Q5=[14/Feb/2008:20:28:41_+0100] 90.152.101.1    host90-152-101-1.ipv4.regusnet.com
+      1 file=slask2;Q0=88.131.106.9&Q1=1.0.0.4 90.152.101.1    host90-152-101-1.ipv4.regusnet.com
+      1 file=slask2;Q6=GET%20%2Fmibl%2F%20HTTP%2F1.1&Q0=78.69.45.85 90.152.101.1    host90-152-101-1.ipv4.regusnet.com
+
+********** Attempts to locate Proxy ********** 
+None found.
+
+********** Exceedingly Long URL's ********** 
+None found.

@@ -1,0 +1,501 @@
+FW1 Statistics
+$Revision: 1.39 $
+Executed: Mon Sep 27 22:37:15 2004
+Started: 2004-04-30 23:59:00
+Ended:   2004-05-01 23:58:58
+Lines Read: 112662
+No Log gaps found. 
+
+Firewall count
+Totally 112662 lines and 2 unique firewall(s).
+  Count  Firewall I/F                             
+ 112661  193.12.55.220 
+      1          
+
+Rule Stats
+Totally 112662 rule-hits and 18 rules used.
+  Count  Rule nr  Percent
+  51419       24  % 45.64  ******************
+  32779       16  % 29.09  ***********
+   7693       21  %  6.83  **
+   5364        7  %  4.76  *
+   3821       20  %  3.39  *
+   2959       10  %  2.63  *
+   2880       15  %  2.56  *
+   2527       19  %  2.24  
+    842  No-Rule  %  0.75  
+    774        2  %  0.69  
+    703       18  %  0.62  
+    623       13  %  0.55  
+    132        6  %  0.12  
+     73       22  %  0.06  
+     46        5  %  0.04  
+     10       17  %  0.01  
+      9       14  %  0.01  
+      8        0  %  0.01  
+
+Stats for No-Rule hits.
+Totally 842 hits and 7 reasons.
+  Count  Percent  Action & Reason
+    751  % 89.19  drop - tcp - First packet isn't SYN
+     61  %  7.24  drop - udp - Virtual defragmentation error: Timeout
+     22  %  2.61  drop - icmp - ICMP packet out of state
+      3  %  0.36  drop - tcp - Virtual defragmentation error: Timeout
+      3  %  0.36  drop - icmp - Large ping - Echo request too long - 
+      1  %  0.12  
+      1  %  0.12  control - Log file has been switched to: 2004-04-30_235900.log
+
+Non-Used rules
+Totally 8 un-used rules and 17 used.
+Higest Used Rule: 24.
+Unused Rule nr:
+         1         3         4         8         9
+        11        12        23
+
+Successfully Blocked Attacks
+Totally 3 entries and 1 unique attacks.
+  Count  Attack                             
+      3  Large ping, Echo request too long
+
+Top 10 http & https Destinations
+Totally 14486 log-entries, and 389 Destinations.
+  Count  Service                             
+   3580  http  193.12.55.124         ftp.lif.se
+   2402  http  192.121.194.70        www.sr.se
+   1142  http  193.12.55.111         www.fass.nu
+    794  http  193.12.55.110         www.patientfass.nu
+    434  http  212.112.162.203       -
+    312  http  193.12.55.41          -
+    260  http  193.12.55.112         www.fass-vet.nu
+    216  http  193.12.55.34          -
+    186  http  193.12.55.119         -
+    180  http  193.12.55.79          -
+
+Top 10 Blocked Ports/Services
+Totally 53033 blocked attempts and 359 unique target ports/services.
+  Count  Service                             
+  28528  tcp: TCP-135        
+   5643  tcp: microsoft-ds   
+   3157  icmp: Echo Request  
+   2155  udp: nbdatagram     
+   1873  tcp: nbsession      
+   1767  udp: nbname         
+   1478  tcp: http           
+    968  udp: MS-SQL-Monitor_UDP
+    949  tcp: MS-SQL-Server  
+    662  tcp: 2745           
+
+Accept/Reject Action statistics
+Totally 112662 hits and 5 unique actions.
+  Count  Action  Percent                    
+  59626  accept  %  52.92  *********************
+  53033  drop    %  47.07  ******************
+      1          %   0.00  
+      1  reject  %   0.00  
+      1  control %   0.00  
+
+Sessions initiated from the firewall
+Totally 9 hits and 3 unique entries.
+  Count  Src             Proto      Service    Dst              
+      4  193.12.55.220   ntp-udp    udp        62.119.40.98    -
+      4  193.12.55.220   ntp-udp    udp        207.46.130.100  time.windows.com
+      1                                                        -
+
+Top 10 non-accept Sources
+Totally 53035 hits and 7121 'attackers'.
+  Count  Source IP        DNS name
+   2691  193.12.55.102    webmail.lif.se
+   1138  220.73.5.111     -
+    631  4.7.21.243       -
+    525  193.12.55.124    www.lif.se
+    501  193.12.55.158    -
+    387  193.189.182.90   AS-101-90.dial-up.siol.net
+    384  193.1.31.194     kellygk.heanet.ie
+    376  193.12.55.125    -
+    339  128.139.202.101  vl-test1.iucc.ac.il
+    335  212.247.27.231   nt.se.lsoft.com
+
+Top 10 non-accept Source details
+Totally 7307 hits and 28 failed attempts.
+Source IP        DNS name
+193.12.55.102    webmail.lif.se
+         Top Destinations for 193.12.55.102:
+       1347 192.168.55.248  -               
+       1344 192.168.55.34   -               
+         Totally 2 destinations and 2691 attempts.
+
+         Top services from 193.12.55.102
+       2691 Echo Request    -               
+         Totally 1 services and 2691 attempts.
+
+220.73.5.111     -
+         Top Destinations for 220.73.5.111:
+          9 193.12.55.83    -               
+          9 193.12.55.22    -               
+          9 193.12.55.25    -               
+          9 193.12.55.106   -               
+          9 193.12.55.94    -               
+          9 193.12.55.121   -               
+          9 193.12.55.38    -               
+          9 193.12.55.98    -               
+          9 193.12.55.8     -               
+          9 193.12.55.30    -               
+         Totally 128 destinations and 1138 attempts.
+
+         Top services from 220.73.5.111
+        128 MS-SQL-Server   -               
+        128 5631            -               
+        128 finger          -               
+        127 domain-tcp      -               
+        127 telnet          -               
+        126 TermServ        -               
+        125 smtp            -               
+        125 pop3            -               
+        124 ftp             wh-ftp1-sn1.fre.skanova.net 
+         Totally 9 services and 1138 attempts.
+
+4.7.21.243       -
+         Top Destinations for 4.7.21.243:
+          8 193.12.55.33    -               
+          6 193.12.55.78    -               
+          6 193.12.55.5     -               
+          6 193.12.55.124   www.lif.se      
+          6 193.12.55.38    -               
+          6 193.12.55.118   -               
+          6 193.12.55.107   -               
+          6 193.12.55.92    -               
+          6 193.12.55.26    -               
+          6 193.12.55.76    -               
+         Totally 128 destinations and 631 attempts.
+
+         Top services from 4.7.21.243
+        631 nbsession       -               
+         Totally 1 services and 631 attempts.
+
+193.12.55.124    ftp.lif.se
+         Top Destinations for 193.12.55.124:
+        521 193.12.55.127   -               
+          4 12.175.0.35     -               
+         Totally 2 destinations and 525 attempts.
+
+         Top services from 193.12.55.124
+        346 nbdatagram      -               
+        175 nbname          -               
+          1 50985           -               
+          1 60339           -               
+          1 20710           -               
+          1 51400           -               
+         Totally 6 services and 525 attempts.
+
+193.12.55.158    -
+         Top Destinations for 193.12.55.158:
+        501 193.12.55.255   -               
+         Totally 1 destinations and 501 attempts.
+
+         Top services from 193.12.55.158
+        285 nbdatagram      -               
+        216 nbname          -               
+         Totally 2 services and 501 attempts.
+
+193.189.182.90   AS-101-90.dial-up.siol.net
+         Top Destinations for 193.189.182.90:
+          3 193.12.55.121   -               
+          3 193.12.55.3     -               
+          3 193.12.55.101   -               
+          3 193.12.55.51    -               
+          3 193.12.55.41    -               
+          3 193.12.55.220   -               
+          3 193.12.55.75    -               
+          3 193.12.55.22    -               
+          3 193.12.55.122   -               
+          3 193.12.55.38    -               
+         Totally 129 destinations and 387 attempts.
+
+         Top services from 193.189.182.90
+        387 TCP-135         -               
+         Totally 1 services and 387 attempts.
+
+193.1.31.194     kellygk.heanet.ie
+         Top Destinations for 193.1.31.194:
+          3 193.12.55.4     -               
+          3 193.12.55.27    -               
+          3 193.12.55.95    -               
+          3 193.12.55.127   -               
+          3 193.12.55.122   -               
+          3 193.12.55.72    -               
+          3 193.12.55.11    -               
+          3 193.12.55.43    -               
+          3 193.12.55.37    -               
+          3 193.12.55.58    -               
+         Totally 128 destinations and 384 attempts.
+
+         Top services from 193.1.31.194
+        384 microsoft-ds    -               
+         Totally 1 services and 384 attempts.
+
+193.12.55.125    -
+         Top Destinations for 193.12.55.125:
+        242 193.12.55.127   -               
+        134 193.12.55.253   -               
+         Totally 2 destinations and 376 attempts.
+
+         Top services from 193.12.55.125
+        175 nbdatagram      -               
+        134 domain-udp      -               
+         67 nbname          -               
+         Totally 3 services and 376 attempts.
+
+128.139.202.101  vl-test1.iucc.ac.il
+         Top Destinations for 128.139.202.101:
+          3 193.12.55.43    -               
+          3 193.12.55.12    -               
+          3 193.12.55.111   www.fass.nu     
+          3 193.12.55.8     -               
+          3 193.12.55.26    -               
+          3 193.12.55.36    -               
+          3 193.12.55.66    -               
+          3 193.12.55.20    -               
+          3 193.12.55.52    -               
+          3 193.12.55.119   -               
+         Totally 129 destinations and 339 attempts.
+
+         Top services from 128.139.202.101
+        339 MS-SQL-Monitor_UDP -               
+         Totally 1 services and 339 attempts.
+
+212.247.27.231   nt.se.lsoft.com
+         Top Destinations for 212.247.27.231:
+        298 255.255.255.255 -               
+         37 212.247.27.255  -               
+         Totally 2 destinations and 335 attempts.
+
+         Top services from 212.247.27.231
+        298 712             -               
+         22 nbdatagram      -               
+         15 nbname          -               
+         Totally 3 services and 335 attempts.
+
+Top 10 non-accept Targets
+Totally 53034 hits and 304 'Targets'.
+  Count  Target IP        DNS name
+   1928  193.12.55.127    -
+   1410  192.168.55.34    -
+   1347  192.168.55.248   -
+   1274  193.12.55.53     -
+    911  212.247.27.255   -
+    624  193.12.55.94     -
+    617  255.255.255.255  -
+    583  193.12.55.41     -
+    501  193.12.55.255    -
+    463  193.12.55.34     -
+
+Top 10 non-accept Target details
+Totally 9658 hits and 2936 failed attempts.
+  Count  Target IP        DNS name
+   1928  193.12.55.127    -
+         Top Sources, Targeting 193.12.55.127:
+        521 193.12.55.124   www.lif.se      
+        318 193.12.55.90    -               
+        271 193.12.55.120   halebop.web.lsdomain.se 
+        242 193.12.55.125   -               
+        175 193.12.55.100   -               
+         15 207.134.30.12   c207.134.30-12.clta.globetrotter.net 
+          8 220.73.5.111    -               
+          5 4.7.21.243      -               
+          4 193.12.55.88    gatekeeper.lif.se 
+          3 193.189.182.90  AS-101-90.dial-up.siol.net 
+         1928 attempts, 347 Sources
+
+         Top services targeting 193.12.55.127 
+       1159 udp - nbdatagram                 
+        377 udp - nbname                    
+        226 tcp - TCP-135                   
+         45 tcp - http                      
+         35 tcp - microsoft-ds                 
+         16 tcp - nbsession                 
+         11 tcp - 2745                      
+          9 udp - MS-SQL-Monitor_UDP                 
+          6 tcp - MS-SQL-Server                 
+          5 icmp - Echo Request                 
+         Totally 1928 attempts and 34 services.
+
+   1410  192.168.55.34    -
+         Top Sources, Targeting 192.168.55.34:
+       1344 193.12.55.102   webmail.lif.se  
+         66 193.12.55.100   -               
+         1410 attempts, 2 Sources
+
+         Top services targeting 192.168.55.34 
+       1344 icmp - Echo Request                 
+         66 udp - nbdatagram                 
+         Totally 1410 attempts and 2 services.
+
+   1347  192.168.55.248   -
+         Top Sources, Targeting 192.168.55.248:
+       1347 193.12.55.102   webmail.lif.se  
+         1347 attempts, 1 Sources
+
+         Top services targeting 192.168.55.248 
+       1347 icmp - Echo Request                 
+         Totally 1347 attempts and 1 services.
+
+   1274  193.12.55.53     -
+         Top Sources, Targeting 193.12.55.53:
+          9 220.73.5.111    -               
+          5 4.7.21.243      -               
+          3 83.129.121.153  p83.129.121.153.tisdip.tiscali.de 
+          3 211.105.66.235  -               
+          3 193.1.31.194    kellygk.heanet.ie 
+          3 219.68.28.137   219-68-28-137.adsl.dynamic.giga.net.tw 
+          3 128.139.202.101 vl-test1.iucc.ac.il 
+          3 219.68.179.48   219-68-179-48.adsl.dynamic.giga.net.tw 
+          3 193.189.182.90  AS-101-90.dial-up.siol.net 
+          2 200.154.69.166  dl-nas3-bsb-C89A45A6.dialterra.com.br 
+         1274 attempts, 1219 Sources
+
+         Top services targeting 193.12.55.53 
+        983 tcp - microsoft-ds                 
+        224 tcp - TCP-135                   
+         14 tcp - nbsession                 
+          8 tcp - MS-SQL-Server                 
+          6 udp - MS-SQL-Monitor_UDP                 
+          4 tcp - 443                       
+          4 udp - nbname                    
+          3 tcp - sunrpc                    
+          3 tcp - https                     
+          2 tcp - ftp                       
+         Totally 1274 attempts and 29 services.
+
+    911  212.247.27.255   -
+         Top Sources, Targeting 212.247.27.255:
+         69 212.247.27.153  fatburen153.fatburen.org 
+         56 212.247.27.48   fatburen48.fatburen.org 
+         47 212.247.27.91   fatburen91.fatburen.org 
+         37 212.247.27.231  nt.se.lsoft.com 
+         33 212.247.27.80   fatburen80.fatburen.org 
+         32 212.247.27.33   fatburen33.fatburen.org 
+         30 212.247.27.81   fatburen81.fatburen.org 
+         27 212.247.27.189  fatburen189.fatburen.org 
+         27 212.247.27.131  fatburen131.fatburen.org 
+         26 212.247.27.27   fatburen27.fatburen.org 
+         911 attempts, 54 Sources
+
+         Top services targeting 212.247.27.255 
+        496 udp - nbdatagram                 
+        412 udp - nbname                    
+          3 udp - router                    
+         Totally 911 attempts and 3 services.
+
+    624  193.12.55.94     -
+         Top Sources, Targeting 193.12.55.94:
+         34 193.6.134.102   d10a.bio.klte.hu 
+         15 193.40.82.61    p11.hwg.edu.ee  
+         15 193.40.82.29    w19.hwg.edu.ee  
+         12 193.6.143.231   demfk3231.tech.klte.hu 
+         11 193.6.152.97    host97.pathophys.dote.hu 
+         11 193.103.237.49  -               
+         11 193.6.135.126   ics024.inf.unideb.hu 
+         11 193.6.144.165   tqm05.tech.klte.hu 
+         11 193.110.9.163   -               
+         11 193.6.156.8     host8.surgi.dote.hu 
+         624 attempts, 342 Sources
+
+         Top services targeting 193.12.55.94 
+        241 tcp - TCP-135                   
+        117 tcp - microsoft-ds                 
+         68 tcp - Remote_Storm                 
+         37 tcp - 2745                      
+         25 tcp - 3127                      
+         24 tcp - DameWare                  
+         22 tcp - nbsession                 
+         19 tcp - MS-SQL-Server                 
+         14 tcp - http                      
+         11 tcp - Back_Door_Setup                 
+         Totally 624 attempts and 32 services.
+
+    617  255.255.255.255  -
+         Top Sources, Targeting 255.255.255.255:
+        298 212.247.27.231  nt.se.lsoft.com 
+         74 212.247.27.91   fatburen91.fatburen.org 
+         49                 -               
+         28 192.168.130.3   -               
+         23 212.247.27.116  fatburen116.fatburen.org 
+         22 192.168.130.63  -               
+         22 212.247.27.94   fatburen94.fatburen.org 
+         22 192.168.130.26  -               
+         22 192.168.130.49  -               
+         21 212.247.27.150  fatburen150.fatburen.org 
+         617 attempts, 23 Sources
+
+         Top services targeting 255.255.255.255 
+        298 udp - 712                       
+        219 udp - dhcp-req-localmodule                 
+         74 udp - 2222                      
+         26 udp - dhcp-rep-localmodule                 
+         Totally 617 attempts and 4 services.
+
+    583  193.12.55.41     -
+         Top Sources, Targeting 193.12.55.41:
+          9 220.73.5.111    -               
+          5 4.7.21.243      -               
+          4 139.67.162.115  lantz-tok162115.eiu.edu 
+          3 67.64.5.165     adsl-67-64-5-165.dsl.ltrkar.swbell.net 
+          3 193.189.182.90  AS-101-90.dial-up.siol.net 
+          3 68.144.18.188   S01060010dc43eadb.cg.shawcable.net 
+          3 219.129.223.194 -               
+          3 128.139.202.101 vl-test1.iucc.ac.il 
+          3 203.231.153.104 -               
+          3 216.60.12.130   216-60-12-130.ded.swbell.net 
+         583 attempts, 529 Sources
+
+         Top services targeting 193.12.55.41 
+        224 tcp - TCP-135                   
+        156 tcp - http                      
+        119 tcp - microsoft-ds                 
+         15 tcp - nbsession                 
+         14 udp - MS-SQL-Monitor_UDP                 
+          7 tcp - MS-SQL-Server                 
+          5 tcp - 2745                      
+          4 tcp - 443                       
+          4 udp - nbname                    
+          4 tcp - Remote_Storm                 
+         Totally 583 attempts and 31 services.
+
+    501  193.12.55.255    -
+         Top Sources, Targeting 193.12.55.255:
+        501 193.12.55.158   -               
+         501 attempts, 1 Sources
+
+         Top services targeting 193.12.55.255 
+        285 udp - nbdatagram                 
+        216 udp - nbname                    
+         Totally 501 attempts and 2 services.
+
+    463  193.12.55.34     -
+         Top Sources, Targeting 193.12.55.34:
+          9 220.73.5.111    -               
+          4 4.7.21.243      -               
+          3 165.21.154.17   bbcache-17.singnet.com.sg 
+          3 220.108.221.224 i220-108-221-224.s02.a013.ap.plala.or.jp 
+          3 193.1.31.194    kellygk.heanet.ie 
+          3 128.139.202.101 vl-test1.iucc.ac.il 
+          3 193.189.182.90  AS-101-90.dial-up.siol.net 
+          2 63.238.104.2    nat.omuonline.net 
+          2 200.154.69.166  dl-nas3-bsb-C89A45A6.dialterra.com.br 
+          2 202.64.226.3    pressfield.com  
+         463 attempts, 418 Sources
+
+         Top services targeting 193.12.55.34 
+        231 tcp - TCP-135                   
+        108 tcp - http                      
+         63 tcp - microsoft-ds                 
+         12 tcp - nbsession                 
+          6 udp - MS-SQL-Monitor_UDP                 
+          6 tcp - MS-SQL-Server                 
+          4 tcp - 443                       
+          4 udp - nbname                    
+          3 tcp - sunrpc                    
+          3 tcp - https                     
+         Totally 463 attempts and 30 services.
+
+

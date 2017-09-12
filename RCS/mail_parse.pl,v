@@ -1,0 +1,1190 @@
+head	1.23;
+access;
+symbols;
+locks
+	mibl:1.23; strict;
+comment	@# @;
+
+
+1.23
+date	2004.08.13.10.40.29;	author mibl;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	2004.08.13.09.57.41;	author mibl;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	2003.12.29.11.00.35;	author mibl;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	2003.12.29.10.17.35;	author mibl;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	2003.11.17.09.51.38;	author mibl;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	2003.10.19.06.57.10;	author mibl;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	2003.07.11.19.32.17;	author mibl;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	2003.07.03.11.48.21;	author mibl;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	2003.06.25.08.23.58;	author mibl;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	2003.06.25.08.12.11;	author mibl;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	2003.06.25.07.57.28;	author mibl;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	2003.05.06.19.50.27;	author mibl;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	2003.04.29.14.57.11;	author mibl;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	2003.03.25.21.43.36;	author mibl;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2003.03.25.21.04.40;	author mibl;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2003.03.25.08.50.40;	author root;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2003.02.11.09.46.47;	author root;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2002.11.27.08.34.44;	author mibl;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2002.11.18.13.16.03;	author root;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2002.07.01.21.56.50;	author root;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2002.07.01.21.54.58;	author root;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2002.06.17.07.39.25;	author root;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2002.06.17.07.38.33;	author root;	state Exp;
+branches;
+next	;
+
+
+desc
+@Done ALOT of stuff
+@
+
+
+1.23
+log
+@Started ned development, but it seems we av[D have done more thann needed
+@
+text
+@#!/usr/bin/perl
+# $Header: /home/mibl/Dev/slac/RCS/mail_parse.pl,v 1.22 2004/08/13 09:57:41 mibl Exp mibl $
+# Script to handle incoming mail messages, and forward them
+# to the appropriate analysis tools. Reads mail-stream
+# from standard input, and parses with MIME-Tools.
+# Currently 'secsrch.pl' is the only tool it forwards to.
+#
+# 2002-05-15 Initial Development start
+# 2002-05-15 
+# 2002-06-10 Added support for PGP-decryption of logfiles
+# 2002-06-11 Added support for ZIP file unpacking
+# 2003-04-29 Added support for getting logformat from Subject
+# 2004-08-13 Changed handling so that this program just 
+#            parses the mails, and places each file in a directory.
+#            The passing of each file to processing is handled by 
+#            a seperate process.
+
+
+#use Sys::Syslog;                          # all except setlogsock, or:
+use Sys::Syslog qw(:DEFAULT setlogsock);  # default set, plus setlogsock
+
+$DEBUG = 1;
+
+slog("New Mail: mail_parse.pl Started " . localtime() . "\n");
+
+#$parseoutputdir = '/tmp';
+
+#$parseoutputdir = '/home/logger/';
+$parseoutputdir = '/var/tmp';
+$LOGGERDIR = 'logger';
+$FWLOGGERDIR = 'fwlogger';
+$ANALYSIS = '/usr/local/slac/secsrch.pl';
+$FWANALYSIS = '/usr/local/slac/fw1-secsrch.pl';
+$MAIL = '/bin/mail';
+#$OPT = "-p -m ";  # Options to be passed to the ANALYSIS program
+$OPT = "-p ";  # Options to be passed to the ANALYSIS program
+
+$FWOPT = " -D -p ";   # Options for firewall analysis (Progress & No reverse dns)
+our $subject;
+$subject = '';
+
+slog("ParseOutputDir: " . $parseoutputdir . "\n");
+
+if ($DEBUG gt 1) {
+    slog("Debug is on\n");
+    $of = $parseoutputdir . '/' . "$$-mail.log";
+    slog("Outfile: $of\n");
+    open OUT, ">>$of";
+    open IN, "<&STDIN";
+    while (<IN>) {
+	print OUT $_;
+    }
+    close OUT;
+    close IN;
+    slog("Debug is ON, so we exit after printing the mail to a file.\n");
+    slog("Exited.\n");
+    exit;
+}
+
+use MIME::Parser;
+use Mail::Send;
+use Archive::Zip;
+my $parser = new MIME::Parser;	
+
+if ($ENV{'OS'} =~ m/windows/i) {
+    $os = 'win'; 		#Windows
+    $osenv = 'OS';
+    $parseoutputdir = '\temp';
+}
+elsif ($ENV{'OSTYPE'} =~ m/solaris/i) {
+    $os = 'sol';		#Solaris
+    $osenv = 'OSTYPE';
+}
+else {
+    $os = 'unknown';
+}
+
+slog("\$parseoutputdir = $parseoutputdir\n");
+
+$parser->output_under($parseoutputdir);
+#$parser->output_dir($parseoutputdir);
+#$parser->output_prefix("XXX");
+slog("Have set outputdir\n");
+
+$ent = $parser->parse(\*STDIN);
+
+slog("Sett parser to STDIN\n");
+
+dump_entity($ent) if $ent;
+
+slog("Mail_Parse Done " . localtime() . "\n");
+
+sub dump_entity {
+    slog("Start dump_entity\n");
+    my $ent = shift;
+    my @@parts = $ent->parts;
+    $f = 0;   #Counter for number of files processed
+    $authorized = 0;
+    $single = 1;
+    if (@@parts) {  # multipart...
+	$single = 0;
+	slog("Multipart:\n");
+        $to = $ent->head->get('To');
+	if ($to =~ m/^fwlogger\@@/) {
+	    #$parseoutputdir = $parseoutputdir . '/' . $FWLOGGERDIR; 
+	    slog("  Analyzing firewall log");
+	    $ANALYSIS = $FWANALYSIS;
+	    $OPT = $FWOPT;
+	} else {
+	    #$parseoutputdir = $parseoutputdir . '/' . $LOGGERDIR;
+	    slog("  Analyzing Web log");
+	}
+
+	slog("  MP To: $to\n");
+        $from = $ent->head->get('From');
+	slog("  MP From: $from\n");
+	$subject = $ent->head->get('Subject');
+	#$subject = $subject;
+	#print "Subj " . $subject;
+	#$subject =~ s/\%/\%\%/g;
+	#print "Subj2: $subj2\n";
+        slog("Subject: ". $subject);
+
+	$from =~ m/([\w\d\.]+\@@[\w\d\.]+)/;
+
+	$rep = $1;
+
+	if (authorized($rep) eq -1) {
+	    slog("$rep is unauthorized.\n");
+	    $msg = new Mail::Send ;
+	    $msg->subject('Not Authorized');
+	    $msg->to($rep);
+	
+	    $FH = $msg->open;
+	    #print $FH "You aint authorized man. Beat it.\n";
+	    #print $FH "The address \'$rep\' just isn't good enough.\n";
+	    print $FH "The address you used has not been authorized to use the SLAC service.\n";
+	    print $FH "Send an e\-mail to mibl\@@a51.mine.nu,\n";
+	    print $FH "containing the address you want to use.\n";
+	    print $FH "\n\n";
+	    $FH->close;         # complete the message and send it
+	
+	    return -1;
+	}
+
+	$subject = $ent->head->get('Subject');
+	#$subject =~ s/\%/\%\%/g;
+	#print "got subj: " . $ent->head->get('Subject') . "\n";
+	#print $subject;
+	slog('SSSSubject: ' . $subject);
+	$replyto = $ent->head->get('Reply-To');
+	slog("" . localtime() . "\n");
+        slog("From: $from  To: $to  Subject: " . $subject ." Reply\-To: $replyto\n");
+        map { dump_entity($_) } @@parts;
+
+    } else {    # single part...
+	slog("Single Part:\n");
+	$part = scalar($ent->head->mime_type);
+	$path = $ent->bodyhandle->path;
+	if (-f $path) { slog("File successfully created: $path"); } 
+	if (! defined $to) { $to = $ent->head->get('To'); }
+	if (! defined $from ) {
+	    $from = $ent->head->get('From');
+	    $from =~ m/([\w\d\.]+\@@[\w\d\.]+)/;
+	    $rep = $1;
+	}
+	#slog($ent->head->get('Subject'));
+	if (! defined $subject) { 
+	    #print "Not deffed: " . $ent->head->get('Subject');
+	    $subject = $ent->head->get('Subject'); 
+	    slog("  Not def $subject");
+	} else {
+	    slog("  Def $subject");
+	}
+	slog("  SP From: $from\n");
+	slog("  SP To: $to\n");
+        slog("  SP Part: $path ($part)\n");
+	slog("  SP Subject: $subject");
+	$path =~ m/(.*?)\/([\d\w\.\-]+)$/;
+	slog("\$1 $1\n");
+	slog("\$2 $2\n");
+	$dir = $1;
+	if ($single eq 1) {
+	    $file = $path;
+	} else {
+	    $file = $2;
+	}
+	slog("Analyzing $file ($part)\n");
+	# If logfile; open it and start parsing...
+	if (($part eq 'application/octet-stream') ||
+	    ($part eq 'application/x-gzip') ||
+	    ($part eq 'application/x-gzip-compressed') ||
+	    ($part eq 'text/plain') ||
+	    ($part eq 'application/zip')) 
+	{
+	    #Check if encrypted, before analyzing...
+	    if (($path =~ m/\.pgp$/i) || 
+		($path =~ m/\.asc$/i) || 
+		($path =~ m/\.gpg/i)) {
+		slog("Found PGP encrypted file $path");
+		#$path =~m/(.*)\/(.*)/;
+		#$rundir = $1;
+		slog("Running Dir: $dir");
+		$arg = 'HOME=/home/logger /usr/bin/gpg --batch -v ' . $path . ' 2>&1';
+		# Remove extension, since new file is written to it by gpg.
+		$path =~ m/(.+)\.(.+)/;
+		$gpgoutfile = $1;
+		slog("PGP Args: $arg\n");
+		@@res = `$arg`;
+		slog("Exit message: $!\n");
+		slog("Exit Code: " . ($?/256) ."\n");
+		foreach $x (@@res) {
+		    slog("PGP Res:$x");
+		    if ($x =~ m/file\sname\=\'(.*)\'/i) {
+			$path = $dir . '/' . $1;
+			slog("PGP Outfile: ". $path);
+		    }
+		}
+		# If filename of gpg archive differs from oroginal filenam,
+		# do a rename of the file
+		if ($gpgoutfile ne $path) {
+		    slog("Renaming from: $path, to $gpgoutfile");
+		    rename $gpgoutfile,$path;
+		}
+	    }
+
+	    
+	    if ($path =~ m/(.*)\.zip$/i) {
+		slog("Found Zip file... $path\n");
+		# Check if Zip. Then UnZip and 
+		$zip = Archive::Zip->new();
+		die 'read error' unless $zip->read($path) == AZ_OK;
+		my @@member = $zip->memberNames();
+		print $zip->numberOfMembers();
+		
+		foreach $x (@@member) {
+		    #print "$x\n";
+
+		    #$zip->extractMember($x, $parseoutputdir . '/' . $x);
+		    $zip->extractMember($x, $dir . '/' . $x);
+		    #$path = $parseoutputdir . '/' . $x;
+		    $path = $dir . '/' . $x;
+		    slog("Found $x. Extracted to $path");
+		    #analyze();
+		}
+	    }
+	    else
+	    {
+		#analyze();
+	    }
+	}
+    }
+}
+
+sub authorized {
+    return 0;
+    # Check if $rep is authorized for this..
+    my $name = pop;
+    open DB, '</usr/local/var/SAC_client';
+    slog("From: $name\n");
+    while (<DB>) {
+        chomp;
+        slog("  Looking: $_ \n");
+        if ($_ eq $name) {
+           slog("  Matched: $_\n");
+	   
+           $authorized = 1;
+	   close DB;
+	   return 0;
+           last;
+        }
+    }
+    close DB;
+    return -1;
+
+}
+
+sub analyze {
+    slog("Starting sub analyze\n");
+    $maint = '/etc/SLACmaintenance';
+    # Check if in maintenance Mode...
+    if (-f $maint) {
+	slog("SLAC in Maintenance\n");
+	$arg = '/bin/cat ' . "$maint" . " | $MAIL -s \'Service Temporarily Down\' $rep\n";
+	slog("Mail sent \($arg\)\n");
+	print LOG "Executing \'$arg\' \n";
+	@@res = system($arg);
+
+    } else { 
+        # Not in maintenance
+	# Call the external program to perform the analysis
+	# No, no, no. Not any more. Simply place the file in a 
+	# directory for later processing.
+
+	$f++;
+	$path =~ m/(.*)\/(.*)/;
+	$dir = $1;               # Get Directory
+	$filename = $2;          # Get Filename 
+	$infile = $path;
+	$outfile = $path . '.out';
+	slog("Dir: $dir File: $filename\n");
+
+	#$arg = "$ANALYSIS " . $OPT . " -C \'$subject\' $infile $outfile";
+	#$arg = "$ANALYSIS " . $OPT . " $infile $outfile";
+	if ($to =~ m/fwlogger\@@/) {
+	    $arg = "$FWANALYSIS " . $FWOPT . " \-i $infile \> $outfile";
+	}
+	slog("Creating Outfile with: \'$arg\'\n");
+	#@@res = system($arg);
+	if (system($arg) == 0) {
+	    slog("Mailing outfile\n");
+	    $arg = "/bin/cat $outfile | $MAIL -s \'Results from $filename\' $rep ";
+	    slog("Calling $MAIL \($arg\)\n");
+	    #@@res = system($arg);
+	    print LOG "Executing \'$arg\' \n";
+	    @@res = system($arg);
+	} else {
+	    slog("Secsrch returned with errorcode $?\n");
+	    #$arg = "$MAIL -s \'Error \- No Analysis\' $rep";
+	}
+
+    }
+    #print LOG "Executing \'$arg\' \n";
+    #@@res = system($arg); 
+}
+
+
+#$ent->dump_skeleton;
+
+#open OUT, ">&STDOUT";
+#open MAIL, ">>/tmp/mail_$$.log";
+#binmode OUT;
+#print OUT localtime() . " Processing mail!\n";
+
+#while (<IN>) {
+#    print MAIL $_;
+#    if (m/filename=\"(.*?)\"/) {
+#	$file = 1;
+#	open OUT, ">\/tmp\/$1";
+#	next;
+#    }
+#    if ($file == 1) {
+#	#print OUT decode_base64($_);
+#    }
+#}
+
+ 
+# Add Syslog facility
+sub slog {
+    my $msg = shift @@_;
+    setlogsock('unix');
+    openlog('mail_parse.pl', 'cons,pid', 'local2');
+    syslog('info', '%s', $msg);
+    closelog;
+    return 0;
+}
+ 
+# And that's about all there is....
+@
+
+
+1.22
+log
+@Started development of next generation.
+This version just places the file in a directory for later processing.
+Or maybe the vesr[3~[3~[D
+version after this one...
+@
+text
+@d2 1
+a2 1
+# $Header: /home/mibl/Dev/slac/RCS/mail_parse.pl,v 1.21 2003/12/29 11:00:35 mibl Exp mibl $
+d13 5
+d28 4
+a31 1
+$parseoutputdir = '/home/logger/';
+d81 2
+a82 1
+
+d105 1
+d110 1
+d122 1
+a122 1
+        slog($subject);
+d160 1
+d244 1
+a244 1
+		    analyze();
+d249 1
+a249 1
+		analyze();
+d292 3
+d304 1
+a304 1
+	$arg = "$ANALYSIS " . $OPT . " $infile $outfile";
+@
+
+
+1.21
+log
+@MOdified and improved pgp-handling
+I mean, GPG handling
+@
+text
+@d2 1
+a2 1
+# $Header: /home/mibl/Dev/slac/RCS/mail_parse.pl,v 1.20 2003/12/29 10:17:35 mibl Exp mibl $
+d189 7
+a195 4
+		$path =~m/(.*)\/(.*)/;
+		$rundir = $1;
+		slog("Running Dir: $rundir");
+		$arg = 'HOME=/home/logger /usr/bin/gpg -v ' . $path . ' 2>&1';
+d203 1
+a203 1
+			$path = $rundir . '/' . $1;
+d207 6
+d214 1
+@
+
+
+1.20
+log
+@Changed gpg option
+@
+text
+@d2 1
+a2 1
+# $Header: /home/mibl/Dev/slac/RCS/mail_parse.pl,v 1.19 2003/11/17 09:51:38 mibl Exp mibl $
+d185 3
+a187 1
+	    if (($path =~ m/(.*)\.pgp$/i) || ($path =~ m/(.*)\.asc$/i)) {
+d189 4
+a192 1
+		$arg = 'HOME=/home/logger /usr/bin/pgp -v +force ' . $path;
+d195 2
+d199 2
+a200 2
+		    if ($x =~ m/Plaintext\sfilename:(.*)/) {
+			$path = $1;
+a203 2
+		slog("$!\n");
+		slog(($?/256) ."\n");
+@
+
+
+1.19
+log
+@changed detection of 'to:' address
+@
+text
+@d2 1
+a2 1
+# $Header: /home/mibl/Dev/secsrch/RCS/mail_parse.pl,v 1.18 2003/10/19 06:57:10 mibl Exp mibl $
+d27 3
+a29 1
+$OPT = "-p -m ";  # Options to be passed to the ANALYSIS program
+d127 1
+a127 1
+	    print $FH "Send an e\-mail to request\@@a51.mine.nu,\n";
+d187 1
+a187 1
+		$arg = 'HOME=/home/logger /usr/bin/pgp +force ' . $path;
+@
+
+
+1.18
+log
+@Added '-m' to $OPT
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/secsrch/RCS/mail_parse.pl,v 1.17 2003/07/11 19:32:17 mibl Exp mibl $
+d24 2
+a25 1
+$ANALYSIS = '/usr/local/bin/secsrch.pl';
+d28 1
+d93 8
+d273 3
+@
+
+
+1.17
+log
+@Removed passing of $subject to secsrch.pl
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/secsrch/RCS/mail_parse.pl,v 1.16 2003/07/03 11:48:21 mibl Exp mibl $
+d26 1
+a26 1
+$OPT = "-p";  # Options to be passed to the ANALYSIS program
+@
+
+
+1.16
+log
+@Added -p support and changed $opt handling
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/secsrch/RCS/mail_parse.pl,v 1.15 2003/06/25 08:23:58 mibl Exp mibl $
+d261 2
+a262 1
+	$arg = "$ANALYSIS " . $OPT . " -C \'$subject\' $infile $outfile";
+@
+
+
+1.15
+log
+@Added debug messages on Zip-file extractions.
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/secsrch/RCS/mail_parse.pl,v 1.14 2003/06/25 08:12:11 mibl Exp mibl $
+d26 1
+d33 1
+a33 1
+    slog("Debugg is on\n");
+d260 2
+a261 2
+	$opt =+ " -C \'" . $subject . "\'";
+	$arg = "$ANALYSIS " . $opt . " $infile $outfile";
+@
+
+
+1.14
+log
+@Fixed double logging problem with slog sub
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/secsrch/RCS/mail_parse.pl,v 1.13 2003/06/25 07:57:28 mibl Exp mibl $
+d197 2
+a198 1
+		    print "$x\n";
+d203 1
+a203 1
+		    
+@
+
+
+1.13
+log
+@Updated slog functions
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/secsrch/RCS/mail_parse.pl,v 1.12 2003/05/06 19:50:27 mibl Exp mibl $
+d14 1
+a14 1
+use Sys::Syslog;                          # all except setlogsock, or:
+a19 2
+ 
+#slog(`whoami`);
+a30 2
+slog("New Mail: mail_parse.pl Started " . localtime() . "\n");
+
+a298 7
+#print OUT localtime() . " Processing done\n";
+
+sub plog {
+    open LOG, ">>$parseoutputdir/mail_parse.log";
+    print LOG "\[$$\] $0 @@_";
+    close LOG;
+}
+a301 2
+    #print "Slog:";
+    #print @@_;
+a302 2
+    #$msg = "\'" . $msg . "\'";
+    #print "\$msg: $msg";
+d304 1
+a304 5
+    openlog('mail_parse.pl', 'cons,pid', 'local2:');
+    #$str = ' ';
+    #foreach $x (@@_) { 
+    #print "Each: $msg"; 
+    #syslog('info', qw/%h %i/);
+a305 1
+    #}
+@
+
+
+1.12
+log
+@Fixed problem with syslog not logging '%i'
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/secsrch/RCS/mail_parse.pl,v 1.11 2003/04/29 14:57:11 mibl Exp mibl $
+d99 2
+a100 2
+	print "Subj " . $subject;
+	$subject =~ s/\%/\%\%/g;
+d127 1
+a127 1
+	$subject =~ s/\%/\%\%/g;
+d150 1
+a150 1
+	    slog ("  Not def $subject");
+d152 1
+a152 1
+	    slog ("  Def $subject");
+d262 1
+a262 1
+	$opt =+ "-N -C \'" . $subject . "\'";
+d315 2
+a316 3
+    my $msg;
+    $msg = shift @@_;
+    $msg = "\'" . $msg . "\'";
+d318 1
+a318 1
+    #setlogsock('unix');
+d320 1
+a320 1
+    $str = ' ';
+d322 1
+a322 1
+    print "Each: $msg"; 
+d324 1
+a324 1
+    syslog('info', $msg);
+d327 1
+a327 1
+    return $msg;
+@
+
+
+1.11
+log
+@Changed from plog to slog
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/secsrch/RCS/mail_parse.pl,v 1.10 2003/03/25 21:43:36 mibl Exp $
+a16 1
+
+d21 1
+a21 1
+slog(`whoami`);
+d28 2
+d92 1
+a92 1
+	slog("Multipart\n");
+d94 1
+a94 1
+	slog("  To: $to\n");
+d96 8
+a103 1
+	slog("  From: $from\n");
+d127 4
+d133 1
+a133 1
+        slog("From: $from  To: $to  Subject: $subject Reply\-To: $replyto\n");
+d137 1
+a137 1
+	slog("Single Part\n");
+d146 12
+a157 3
+	slog("From: $from\n");
+	slog("To: $to\n");
+        slog("Part: $path ($part)\n");
+d262 2
+a263 1
+	$arg = "$ANALYSIS  $infile $outfile";
+d313 7
+a319 1
+    setlogsock('unix');
+d321 6
+a326 1
+    syslog('info', @@_);
+d328 1
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/secsrch/RCS/mail_parse.pl,v 1.9 2003/03/25 21:04:40 mibl Exp mibl $
+d12 1
+d17 1
+d20 1
+a20 1
+#plog("New Mail: mail_parse.pl Started " . localtime() . "\n");
+d22 1
+a22 1
+#plog(`whoami`);
+d27 2
+d30 1
+a30 1
+plog("ParseOutputDir: " . $parseoutputdir . "\n");
+d32 1
+a32 1
+plog("New Mail: mail_parse.pl Started " . localtime() . "\n");
+d35 1
+a35 1
+    plog("Debugg is on\n");
+d37 1
+a37 1
+    plog("Outfile: $of\n");
+d45 2
+a46 2
+    plog("Debug is ON, so we exit after printing the mail to a file.\n");
+    plog("Exited.\n");
+d68 1
+a68 1
+plog("\$parseoutputdir = $parseoutputdir\n");
+d72 1
+a72 1
+plog("Have set outputdir\n");
+d76 1
+a76 1
+plog("Sett parser to STDIN\n");
+d80 1
+a80 1
+plog("Mail_Parse Done " . localtime() . "\n");
+d83 1
+a83 1
+    plog("Start dump_entity\n");
+d91 1
+a91 1
+	plog("Multipart\n");
+d93 1
+a93 1
+	plog("  To: $to\n");
+d95 1
+a95 1
+	plog("  From: $from\n");
+d101 1
+a101 1
+	    plog("$rep is unauthorized.\n");
+d120 2
+a121 2
+	plog("" . localtime() . "\n");
+        plog("From: $from  To: $to  Subject: $subject Reply\-To: $replyto\n");
+d125 1
+a125 1
+	plog("Single Part\n");
+d134 3
+a136 3
+	plog("From: $from\n");
+	plog("To: $to\n");
+        plog("Part: $path ($part)\n");
+d138 2
+a139 2
+	plog("\$1 $1\n");
+	plog("\$2 $2\n");
+d146 1
+a146 1
+	plog("Analyzing $file ($part)\n");
+d156 1
+a156 1
+		plog("Found PGP encrypted file $path");
+d158 1
+a158 1
+		plog("PGP Args: $arg\n");
+d161 1
+a161 1
+		    plog("PGP Res:$x");
+d164 1
+a164 1
+			plog("PGP Outfile: ". $path);
+d167 2
+a168 2
+		plog("$!\n");
+		plog(($?/256) ."\n");
+d172 1
+a172 1
+		plog("Found Zip file... $path\n");
+d202 1
+a202 1
+    plog("From: $name\n");
+d205 1
+a205 1
+        plog("  Looking: $_ \n");
+d207 1
+a207 1
+           plog("  Matched: $_\n");
+d221 1
+a221 1
+    plog("Starting sub analyze\n");
+d225 3
+a227 3
+	plog("SLAC in Maintenance\n");
+	$arg = '/bin/cat ' . "$maint" . " | /bin/mail -s \'Service Temporarily Down\' $rep\n";
+	plog("Mail sent \($arg\)\n");
+d240 3
+a242 3
+	plog("Dir: $dir File: $filename\n");
+	$arg = "/usr/local/secsrch/secsrch.pl  $infile $outfile";
+	plog("Creating Outfile with: \'$arg\'\n");
+d245 3
+a247 3
+	    plog("Mailing outfile\n");
+	    $arg = "/bin/cat $outfile | /bin/mail -s \'Results from $filename\' $rep ";
+	    plog("Calling /bin/mail \($arg\)\n");
+d252 2
+a253 2
+	    plog("Secsrch returned with errorcode $?\n");
+	    #$arg = "/bin/mail -s \'Error \- No Analysis\' $rep";
+d292 1
+a292 1
+    openlog('mail_parse.pl', 'cons,pid', 'user');
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/secsrch/RCS/mail_parse.pl,v 1.8 2003/03/25 08:50:40 root Exp mibl $
+d237 1
+a237 1
+	$arg = "/usr/local/bin/secsrch.pl  $infile $outfile";
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/bin/RCS/mail_parse.pl,v 1.7 2003/02/11 09:46:47 root Exp root $
+a15 1
+
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/bin/RCS/mail_parse.pl,v 1.6 2002/11/27 08:34:44 mibl Exp mibl $
+d25 3
+a27 1
+$parseoutputdir = '/home/logger';
+d131 7
+a137 3
+	plog("From: $from  To: $to\n");
+        plog("    Part: $path ($part)\n");
+	$path =~ m/([\d\w\.]+)$/;
+d141 1
+a141 1
+	    $file = $1;
+d169 1
+a169 1
+		plog("Found Zip file...");
+d178 4
+a181 2
+		    $zip->extractMember($x, $parseoutputdir . '/' . $x);
+		    $path = $parseoutputdir . '/' . $x;
+d232 1
+a232 1
+	$path =~ m/(.*\/)(.*)/;
+d282 1
+a282 1
+    print LOG "\[$$\] @@_";
+d289 1
+a289 1
+    openlog('SecSrch.pl', 'cons,pid', 'user');
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d1 2
+a2 2
+#!/usr/local/bin/perl
+# $Header: /usr/local/bin/RCS/mail_parse.pl,v 1.5 2002/11/18 13:16:03 root Exp root $
+d13 4
+d32 1
+a32 1
+    plog("$of\n");
+d41 1
+d142 2
+a143 1
+	    ($part eq 'text/plain')) 
+d146 1
+a146 1
+	    if (($path =~ m/(.*)\.pgp$/) || ($path =~ m/(.*)\.asc$/)) {
+d162 1
+a162 1
+	    if ($path =~ m/(.*)\.zip$/) {
+d241 1
+a241 1
+	    plog("Secsrch returned with errorcode $?");
+a275 2
+
+
+d278 7
+@
+
+
+1.5
+log
+@testated
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/bin/RCS/mail_parse.pl,v 1.4 2002/07/01 21:56:50 root Exp root $
+d15 3
+d19 1
+a19 1
+plog("New Mail: mail_parse.pl Started " . localtime() . "\n");
+a20 1
+#$parseoutputdir = '/tmp';
+d23 2
+d58 1
+d60 1
+d62 1
+d64 1
+a64 1
+$parser->output_under($parseoutputdir);
+d66 1
+a66 1
+$ent = $parser->parse(\*STDIN);
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d2 1
+a2 1
+# $Header: /usr/local/bin/RCS/mail_parse.pl,v 1.2 2002/06/17 07:39:25 root Exp root $
+d15 1
+d18 18
+d39 1
+a39 15
+my $parser = new MIME::Parser;
+$parseoutputdir = '/tmp';
+
+if ($DEBUG eq 1) {
+	$of = $parseoutputdir . '/' . "$$-mail.log";
+	plog("$of\n");
+	open OUT, ">>$of";
+	while (<>) {
+		print;
+	}
+	close OUT;
+	exit;
+}
+
+	
+d199 1
+d203 6
+a208 2
+	plog("mail sent \($arg\)\n");
+    } else {
+d218 1
+a218 5
+	plog("Creating Outfile with: $arg\n");
+	@@res = system($arg);
+	plog("Mailing outfile\n");
+	$arg = "/bin/cat $outfile | /bin/mail -s \'Results from $filename\' $rep ";
+	plog("Calling /bin/mail \($arg\)\n");
+d220 11
+d233 2
+a234 2
+    print LOG "Executing $arg \n";
+    @@res = system($arg); 
+d260 1
+a260 1
+    open LOG, ">>/tmp/mail_parse.log";
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d13 2
+d21 12
+d34 19
+a53 1
+$parser->output_under('/tmp');
+d79 1
+a79 1
+	    plog("$rep is unauthorized, and has been notofied\n");
+d154 2
+a155 2
+		    $zip->extractMember($x, '/tmp/' . $x);
+		    $path = '/tmp/' . $x;
+d249 3
+a251 2
+
+
+@
+
+
+1.2
+log
+@Adder header...
+@
+text
+@d2 1
+a2 1
+# $Header$
+d13 1
+a13 1
+plog("mail_parse.pl Started " . localtime() . "\n");
+d26 2
+d39 1
+d41 1
+d47 1
+d55 1
+a55 1
+	    print $FH "The address you used has not been authorized.\n";
+d137 1
+d161 23
+a183 3
+    # Call the external program to perform the analysis
+    $f++;
+    $arg = '/usr/local/bin/secsrch.pl -N ' . $path . " - | /bin/mail -s \'Results from $file\' $rep ";
+d212 1
+a212 1
+    print LOG @@_;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+@

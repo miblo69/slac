@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+
+use CGI;
+
+$query = new CGI;
+
+print $query->start_html;
+
+print $query->end_html;
+

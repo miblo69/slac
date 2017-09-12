@@ -1,0 +1,132 @@
+head	1.1;
+access;
+symbols;
+locks
+	mibl:1.1; strict;
+comment	@# @;
+
+
+1.1
+date	2004.08.29.13.42.35;	author mibl;	state Exp;
+branches;
+next	;
+
+
+desc
+@works with upload.cgi
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<title>Log File Upload</title>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="../images/tornado.css">
+</head>
+
+<body>
+<table border="0" cellpadding="0" cellspacing="8" width="700">
+    <tr>
+      <td align="left" valign="top" width="20%" height="53">
+      <a href="../index.html">
+      <img border="0" src="../images/TorLogo%20small.jpg" width="75" height="53"></a><br>
+      </td>
+      <td height="53" align="left" valign="top">
+      <h1>Tornado Data </h1>
+		<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%" id="table1" class="MenuItem">
+			<tr>
+				<td><a class="MenuItem" href="../index.html">Home</a></td>
+				<td><a class="MenuItem" href="index.html">Services</a></td>
+				<td><a class="MenuItem" href="../about.html">About</a></td>
+				<td><a class="MenuItem" href="support.html">Support</a></td>
+				<td><a class="MenuItem" href="../contact.html">Contact</a></td>
+			</tr>
+		</table>
+		</td>
+    	</tr>
+    <tr>
+      <td align="left" valign="top" width="20%" rowspan="2">
+      <p>
+      &nbsp;<p>
+      <!--webbot bot="Navigation" s-orientation="horizontal" s-rendering="graphics" s-type="siblings" b-include-home="FALSE" b-include-up="TRUE" S-Theme="-tornado 000" startspan --><!--webbot bot="Navigation" i-checksum="0" endspan --><br>
+      </td>
+      <td valign="bottom" width="80%" height="30">
+      <h2><span lang="sv">Web based upload - </span>SLAC Webform File Acceptor</h2>
+		<p>Please report any issues to <a href="mailto:info@@tornado.se">
+		info@@tornado.se</a>.</td>
+    </tr>
+    <tr>
+      <td valign="top" width="80%">
+	 <table height="152">
+	 
+	 <tr><td height="35">
+	 <FORM ACTION="/cgi-bin/upload.cgi" METHOD="POST" ENCTYPE="multipart/form-data"> 
+	 		<fieldset style="padding: 2">
+			<legend>Type of Logfile to analyze</legend>
+
+				<p><input type="radio" value="web" checked name="type">Web 
+				server (Microsoft IIS, Apache, Domino etc)<br>
+				<input type="radio" name="type" value="fw">Checkpoint FW-1 
+				(ASCII/text exported only)</p>
+			<p>All log files are preferably compressed with gzip prior to 
+			submitting them - to minimize bandwidth &amp; time for analysis.</p>
+
+		</fieldset>
+		</td></tr>
+	 
+	 <tr><td height="5" valign="top" align="left">   
+	 	Log file to Upload: <INPUT TYPE="file" NAME="logfile" size="50">
+	  
+ 	</td></tr>
+	 <tr><td height="30">    
+	 	<input type="checkbox" name="nr" value="ON">Perform Reverse Name resolution&nbsp; 
+ 		(can increase analysis time with 100-400%)
+			<br>
+		<input type="checkbox" name="explan" value="ON">Add explanatory text 
+			to each report section (recommended for first time users).
+			<p></p>
+		
+		<fieldset style="padding: 2">
+			<legend>Output Format</legend>
+			<input type="radio" value="txt" checked name="output">Text - 
+			recommended. Produces legible output in your browser.<br>
+			<input type="radio" name="output" value="xml">XML - for parsing the 
+			report, and possibly using your own XML Schema etc</fieldset>
+		<p>&nbsp;</td></tr>
+ 	<tr><td height="22">
+ 	 <INPUT TYPE="submit" NAME="Submit" VALUE="Submit File"></td></tr>
+	 </table>
+		Please note: There is an issue with large files (&gt;100MB uncompressed) timing out 
+		and results not being returned in your browser. We're working on this 
+		currently. The workaround is to e-mail large log files to
+		<a href="mailto:logger@@a51.mine.nu">logger@@a51.mine.nu</a> (web) or
+		<a href="mailto:fwlogger@@a51.mine.nu">fwlogger@@a51.mine.nu</a> (FW-1).<p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</td>
+    </tr>
+  </table></body>
+
+</html>@

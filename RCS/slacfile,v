@@ -1,0 +1,295 @@
+head	1.10;
+access;
+symbols;
+locks
+	mibl:1.10; strict;
+comment	@# @;
+
+
+1.10
+date	2009.02.16.10.23.58;	author mibl;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	2009.02.16.10.05.41;	author mibl;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	2007.08.20.07.39.13;	author mibl;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	2007.08.14.10.44.53;	author mibl;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	2007.08.12.17.47.21;	author mibl;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2003.10.22.09.47.25;	author mibl;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2003.08.08.12.02.37;	author mibl;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2003.08.08.12.02.04;	author mibl;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2003.05.08.07.30.45;	author mibl;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2003.04.28.07.57.28;	author mibl;	state Exp;
+branches;
+next	;
+
+
+desc
+@Script for mailing access.lof file to the SLAC. To be used in crontab
+@
+
+
+1.10
+log
+@changed mail
+@
+text
+@#!/bin/bash
+# $Id: slacfile,v 1.9 2009/02/16 10:05:41 mibl Exp mibl $
+# $Revision: 1.9 $
+#
+# Shell Script to run at 23:59.
+# E-mails the apache logfile to slac
+# (c) Mike Blomgren 2003
+
+MAILER=/usr/bin/nail
+APACHECONF=/etc/httpd/conf/httpd.conf
+SECSRCH="/usr/local/slac/secsrch.pl"
+OUTDIR="/var/www/htdocs/slac/"
+
+#Set date format to whatever your apache logger uses
+DATE=`date  +"%Y-%m-%d"`
+
+# Set from address to where the results should be sent returned to
+FROM=miblo@@yahoo.com
+
+#LOGDIR="/usr/local/apache2/logs /var/wwwtornado/logs"
+LOGDIR="/var/wwwtornado/logs"
+
+# The SLAC receiving address
+TO=logger@@a52.mine.nu
+
+SLEEPTIME=90
+#LF=`cat $APACHECONF | grep LogFormat | grep -v \# `
+#ls -la $LOGFILE
+
+if [ "X$1" != "X" ]; 
+    then SLEEPTIME=0;
+    DATE=$1;
+    #echo $SLEEPTIME;
+    #echo $DATE;
+
+fi
+
+
+sleep $SLEEPTIME
+
+for DIR in $LOGDIR  ; do
+  echo "Directory: $DIR" 
+
+  LOGFILE=$DIR/access-$DATE.log
+
+  # Mailling Logfile to Slac Service
+  CMD="$MAILER -a $LOGFILE -r $FROM -s '$DATE' $TO"
+  echo "Executing: $CMD"
+  logger -p local2.info -i "$CMD"
+  echo . | $CMD
+
+  # Copying 
+  #CMD="$SECSRCH $LOGFILE $OUTDIR"
+  #echo "Executing $SECSRCH as: $CMD"
+  #logger -p local2.info -i "Executing $CMD"
+  #$CMD
+
+done
+
+# And that's all folks.
+@
+
+
+1.9
+log
+@Check in
+@
+text
+@d2 2
+a3 2
+# $Id: slacfile,v 1.8 2007/08/20 07:39:13 mibl Exp mibl $
+# $Revision: 1.8 $
+d24 1
+a24 1
+TO=logger@@a51.mine.nu
+@
+
+
+1.8
+log
+@Modified log path (removed trailing slash)
+@
+text
+@d2 2
+a3 2
+# $Id: slacfile,v 1.7 2007/08/14 10:44:53 mibl Exp mibl $
+# $Revision: 1.7 $
+@
+
+
+1.7
+log
+@Changed dir for logs
+@
+text
+@d2 2
+a3 2
+# $Id: slacfile,v 1.6 2007/08/12 17:47:21 mibl Exp mibl $
+# $Revision: 1.6 $
+d21 1
+a21 1
+LOGDIR="/var/wwwtornado/logs/"
+@
+
+
+1.6
+log
+@modified pathc for new disk
+@
+text
+@d2 2
+a3 2
+# $Id: slacfile,v 1.5 2003/10/22 09:47:25 mibl Exp mibl $
+# $Revision: 1.5 $
+d20 2
+a21 1
+LOGDIR="/usr/local/apache2/logs /var/wwwtornado/logs"
+@
+
+
+1.5
+log
+@Updated few things
+@
+text
+@d2 2
+a3 2
+# $Id: slacfile,v 1.4 2003/08/08 12:02:37 mibl Exp mibl $
+# $Revision: 1.4 $
+d9 3
+a11 3
+MAILER=/usr/local/bin/nail
+APACHECONF=/usr/local/apache2/conf/httpd.conf
+SECSRCH="/usr/local/bin/secsrch.pl"
+d57 3
+a59 1
+done@
+
+
+1.4
+log
+@Added id
+@
+text
+@d2 3
+a4 2
+# $Id: $
+# $Revision: 1.3 $
+d11 4
+d16 2
+a17 1
+#FROM=mibl@@a51.mine.nu
+d19 4
+a22 1
+LOGDIR=/usr/local/apache2/logs
+d24 2
+a25 1
+SLEEPTIME=60
+a36 1
+LOGFILE=$LOGDIR/access-$DATE.log
+a38 4
+CMD="$MAILER -a $LOGFILE -r $FROM -s '$DATE' $TO"
+echo "Executing $CMD"
+logger -p local2.info -i "$CMD"
+echo . | $CMD
+d40 16
+d57 1
+@
+
+
+1.3
+log
+@Added comment
+@
+text
+@d2 2
+a3 1
+# $Revision: $
+@
+
+
+1.2
+log
+@fixes
+@
+text
+@d2 1
+a2 1
+
+d4 1
+a4 1
+# Sends apache log file to slac
+d8 1
+a8 1
+APACHECONF=/usr/local/apache/conf/httpd.conf
+d12 1
+a12 2
+LOGDIR=/usr/local/apache/logs
+LOGFILE=$LOGDIR/access-$DATE.log
+d14 1
+d16 7
+d24 3
+a26 1
+#ls -la $LOGFILE
+d28 1
+a28 1
+sleep 60
+d31 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+d10 2
+a11 2
+DATE="2003-04-27"
+FROM=mibl@@a51.mine.nu
+d15 1
+a15 1
+#echo $DATE $MAILER
+d19 1
+@
