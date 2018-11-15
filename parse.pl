@@ -2,7 +2,7 @@
 
 #use Apache::ParseLog;
 #$base = new Apache::ParseLog();
-#$transferlog = $base->getTransferLog("/home/mibl/www.gildea.com/access_log.11");
+#$transferlog = $base->getTransferLog("/home/mibl/slac/access_log.11");
 #%dailytransferredbytes = $transferlog->bytebydate();
 
 use Parse::AccessLogEntry;
